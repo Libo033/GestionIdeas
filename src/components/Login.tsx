@@ -5,7 +5,10 @@ import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import Link from "next/link";
 
-const Login = () => {
+const Login: React.FC<{ forgotPass: string; signUp: string }> = ({
+  forgotPass,
+  signUp,
+}) => {
   return (
     <div className={styles.login}>
       <div className={styles.login_ImgContainer}>
@@ -42,8 +45,8 @@ const Login = () => {
         <Button variant="contained">SIGN IN</Button>
       </form>
       <div className={styles.login_SignUpContainer}>
-        <Link href={"/"}>Forgot password?</Link>
-        <Link href={"/"}>Don't have an account? Sign Up</Link>
+        <Link href={"/" + forgotPass}>Forgot password?</Link>
+        <Link href={"/" + signUp}>Don't have an account? Sign Up</Link>
       </div>
     </div>
   );

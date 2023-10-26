@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import Link from "next/link";
 import Image from "next/image";
 
-const Register = () => {
+const Register: React.FC<{ signIn: string }> = ({ signIn }) => {
   return (
     <div className={styles.register}>
       <div className={styles.register_ImgContainer}>
@@ -60,7 +60,7 @@ const Register = () => {
         <Button variant="contained">SIGN UP</Button>
       </form>
       <div className={styles.register_SignInContainer}>
-        <Link href={"/"}>Already have an account? Sign in</Link>
+        <Link href={"/" + signIn}>Already have an account? Sign in</Link>
       </div>
     </div>
   );
