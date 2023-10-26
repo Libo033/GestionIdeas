@@ -1,3 +1,4 @@
+/*#region LOGIN */
 .login {
   margin-top: 64px;
   display: flex;
@@ -38,21 +39,93 @@
 
 .login_SignUpContainer a {
   color: rgba(25, 118, 210);
-  text-decoration-color: rgba(25, 118, 210, .4);
+  text-decoration-color: rgba(25, 118, 210, 0.4);
 }
 
 .login_SignUpContainer a:hover {
   text-decoration-color: rgba(25, 118, 210);
 }
+/*#endregion */
+
+/*#region REGISTER */
+.register {
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register_ImgContainer {
+  display: flex;
+  background-color: rgb(156, 39, 176);
+  border-radius: 30px;
+  padding: 9px;
+}
+
+.register_Img {
+  width: 27px;
+  height: auto;
+}
+
+.register_Title {
+  font-weight: 500;
+  font-size: x-large;
+}
+
+.register_Form {
+  width: 27%;
+  height: 390px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.register_InputDoubleContainer {
+  width: 100%;
+  display: flex;
+  gap: 15px;
+}
+
+.register_SignInContainer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+}
+
+.register_SignInContainer a {
+  color: rgba(25, 118, 210);
+  text-decoration-color: rgba(25, 118, 210, 0.4);
+}
+
+.register_SignInContainer a:hover {
+  text-decoration-color: rgba(25, 118, 210);
+}
+/*#endregion */
 
 @media (max-width: 700px) {
+  /*#region LOGIN */
   .login_Form {
     width: 78%;
   }
+  /*#endregion */
+
+  /*#region REGISTER */
+  .register_Form {
+    width: 78%;
+  }
+  /*#endregion */
 }
 
 @media (min-width: 701px) and (max-width: 1120px) {
+  /*#region LOGIN */
   .login_Form {
     width: 45%;
   }
+  /*#endregion */
+
+  /*#region REGISTER */
+  .register_Form {
+    width: 45%;
+  }
+  /*#endregion */
 }
