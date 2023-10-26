@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Titillium_Web } from "next/font/google";
 import "./globals.css";
+import { AuthContextProvider } from "@/context/AuthContext";
 
 const titi = Titillium_Web({
   subsets: ["latin"],
@@ -19,7 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={titi.className}>{children}</body>
+      <AuthContextProvider>
+        <body className={titi.className}>{children}</body>
+      </AuthContextProvider>
     </html>
   );
 }
