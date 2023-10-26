@@ -40,11 +40,11 @@ const Login = () => {
           />
         </div>
         <Button variant="contained">SIGN IN</Button>
-        <div className={styles.login_SignUpContainer}>
-          <Link href={"/"}>Forgot password?</Link>
-          <Link href={"/"}>Don't have an account? Sign Up</Link>
-        </div>
       </form>
+      <div className={styles.login_SignUpContainer}>
+        <Link href={"/"}>Forgot password?</Link>
+        <Link href={"/"}>Don't have an account? Sign Up</Link>
+      </div>
     </div>
   );
 };

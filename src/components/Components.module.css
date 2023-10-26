@@ -24,14 +24,17 @@
 }
 
 .login_Form {
-  width: 27%;
-  height: 390px;
+  max-width: 444px;
+  width: 30%;
+  height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 
 .login_SignUpContainer {
+  max-width: 444px;
+  width: 30%;
   display: flex;
   justify-content: space-between;
   font-size: 15px;
@@ -73,7 +76,8 @@
 }
 
 .register_Form {
-  width: 27%;
+  max-width: 444px;
+  width: 30%;
   height: 390px;
   display: flex;
   flex-direction: column;
@@ -105,13 +109,17 @@
 @media (max-width: 700px) {
   /*#region LOGIN */
   .login_Form {
-    width: 78%;
+    width: 90%;
+  }
+
+  .login_SignUpContainer {
+    width: 90%;
   }
   /*#endregion */
 
   /*#region REGISTER */
   .register_Form {
-    width: 78%;
+    width: 90%;
   }
   /*#endregion */
 }
@@ -119,13 +127,17 @@
 @media (min-width: 701px) and (max-width: 1120px) {
   /*#region LOGIN */
   .login_Form {
-    width: 45%;
+    width: 48%;
+  }
+
+  .login_SignUpContainer {
+    width: 48%;
   }
   /*#endregion */
 
   /*#region REGISTER */
   .register_Form {
-    width: 45%;
+    width: 48%;
   }
   /*#endregion */
 }
