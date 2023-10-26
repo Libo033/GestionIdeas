@@ -6,7 +6,7 @@ import LoginButtonGroup from "@/components/LoginButtonGroup";
 export default function Home() {
   return (
     <main className={styles.main}>
-      <Login forgotPass={""} signUp={""} />
+      <Login forgotPass={"recover_password"} signUp={"create_account"} />
       <div className={styles.divider}>
         <Divider />
       </div>
