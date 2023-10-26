@@ -1,3 +1,4 @@
+"use client"
 import { auth } from "@/libs/firebase";
 import { IAuthContext } from "@/libs/interfaces";
 import {
