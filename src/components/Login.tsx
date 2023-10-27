@@ -46,7 +46,7 @@ const Login: React.FC<{ forgotPass: string; signUp: string }> = ({
       </form>
       <div className={styles.login_SignUpContainer}>
         <Link href={"/" + forgotPass}>Forgot password?</Link>
-        <Link href={"/" + signUp}>Don't have an account? Sign Up</Link>
+        <Link href={"/" + signUp}>Don&apos;t have an account? Sign Up</Link>
       </div>
     </div>
   );
