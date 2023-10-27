@@ -212,6 +212,12 @@
   }
   /*#endregion */
 
+  /*#region LOGINBUTTONGROUP */
+  .LoginButtonGroup {
+    width: 90%;
+  }
+  /*#endregion */
+
   /*#region RECOVER */
   .Recover_Form {
     width: 90%;
@@ -232,6 +238,12 @@
 
   /*#region REGISTER */
   .register_Form {
+    width: 48%;
+  }
+  /*#endregion */
+
+  /*#region LOGINBUTTONGROUP */
+  .LoginButtonGroup {
     width: 48%;
   }
   /*#endregion */

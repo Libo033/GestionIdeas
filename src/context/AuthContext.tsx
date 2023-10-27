@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { auth } from "@/libs/firebase";
 import { IAuthContext } from "@/libs/interfaces";
 import {
@@ -31,7 +31,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
   const googleSignIn = async () => {
     try {
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
+      const googleLogIn = await signInWithPopup(auth, provider);
     } catch (error) {
       console.log(error);
     }
@@ -40,7 +40,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
   const facebookSignIn = async () => {
     try {
       const provider = new FacebookAuthProvider();
-      await signInWithPopup(auth, provider);
+      const facebookLogIn = await signInWithPopup(auth, provider);
     } catch (error) {
       console.log(error);
     }
