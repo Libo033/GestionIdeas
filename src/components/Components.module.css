@@ -144,6 +144,57 @@
 }
 /*#endregion */
 
+/*#region RECOVER */
+.Recover {
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Recover_ImgContainer {
+  display: flex;
+  background-color: rgb(156, 39, 176);
+  border-radius: 30px;
+  padding: 9px;
+}
+
+.Recover_Img {
+  width: 27px;
+  height: auto;
+}
+
+.Recover_Title {
+  font-weight: 500;
+  font-size: x-large;
+}
+
+.Recover_SubTitle {
+  margin-top: 9px;
+  font-weight: 300;
+  color: gray;
+  text-align: justify;
+}
+
+.Recover_Form {
+  max-width: 444px;
+  width: 30%;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.Recover_SignInContainer a {
+  color: rgba(25, 118, 210);
+  text-decoration-color: rgba(25, 118, 210, 0.4);
+}
+
+.Recover_SignInContainer a:hover {
+  text-decoration-color: rgba(25, 118, 210);
+}
+/*#endregion */
+
 @media (max-width: 700px) {
   /*#region LOGIN */
   .login_Form {
@@ -157,6 +208,12 @@
 
   /*#region REGISTER */
   .register_Form {
+    width: 90%;
+  }
+  /*#endregion */
+
+  /*#region RECOVER */
+  .Recover_Form {
     width: 90%;
   }
   /*#endregion */
@@ -175,6 +232,12 @@
 
   /*#region REGISTER */
   .register_Form {
+    width: 48%;
+  }
+  /*#endregion */
+
+  /*#region RECOVER */
+  .Recover_Form {
     width: 48%;
   }
   /*#endregion */
