@@ -24,7 +24,6 @@ const Login: React.FC<{ forgotPass: string; signUp: string }> = ({
       <form className={styles.login_Form}>
         <div className={styles.login_InputContainer}>
           <TextField
-            id="outlined-basic"
             label="Email"
             variant="outlined"
             fullWidth={true}
@@ -34,7 +33,6 @@ const Login: React.FC<{ forgotPass: string; signUp: string }> = ({
         </div>
         <div className={styles.login_InputContainer}>
           <TextField
-            id="outlined-basic"
             label="Password"
             variant="outlined"
             fullWidth={true}

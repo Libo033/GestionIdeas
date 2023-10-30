@@ -21,7 +21,6 @@ const Recover = () => {
       <form className={styles.Recover_Form} action="">
         <div>
           <TextField
-            id="outlined-basic"
             label="Email"
             variant="outlined"
             fullWidth={true}

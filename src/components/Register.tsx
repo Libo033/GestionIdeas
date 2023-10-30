@@ -21,7 +21,6 @@ const Register: React.FC<{ signIn: string }> = ({ signIn }) => {
       <form className={styles.register_Form} action="">
         <div className={styles.register_InputDoubleContainer}>
           <TextField
-            id="outlined-basic"
             label="First Name"
             variant="outlined"
             fullWidth={true}
@@ -29,7 +28,6 @@ const Register: React.FC<{ signIn: string }> = ({ signIn }) => {
             required
           />
           <TextField
-            id="outlined-basic"
             label="Last Name"
             variant="outlined"
             fullWidth={true}
@@ -39,7 +37,6 @@ const Register: React.FC<{ signIn: string }> = ({ signIn }) => {
         </div>
         <div>
           <TextField
-            id="outlined-basic"
             label="Email"
             variant="outlined"
             fullWidth={true}
@@ -49,7 +46,6 @@ const Register: React.FC<{ signIn: string }> = ({ signIn }) => {
         </div>
         <div>
           <TextField
-            id="outlined-basic"
             label="Password"
             variant="outlined"
             fullWidth={true}
