@@ -1,9 +1,32 @@
-export async function POST() {
+import jwt from "jsonwebtoken";
+import { cookies } from "next/headers";
+
+export async function POST(req: Request) {
   try {
-    return Response.json({ test: "ok" }, { status: 200 });
+    const secret_key: string | undefined = process.env.JWT_SECRET;
+    const res: { uid: string } = await req.json();
+
+    if (secret_key === undefined) {
+      throw new Error("Error al obtener las variables");
+    }
+
+    const my_token: string = jwt.sign(
+      {
+        uid: res.uid,
+      },
+      secret_key
+    );
+
+    cookies().set("mySession", my_token, {
+      httpOnly: true,
+      sameSite: "strict",
+      expires: Date.now() + 86400000 * 30, // 30 dias
+    });
+
+    return Response.json({ status: 200 });
   } catch (error) {
     if (error instanceof Error) {
-      return Response.json({ test: "failed" }, { status: 500 });
+      return Response.json({ test: error.message }, { status: 500 });
     }
   }
 }

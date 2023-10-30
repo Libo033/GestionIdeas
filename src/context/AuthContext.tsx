@@ -32,6 +32,16 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     try {
       const provider = new GoogleAuthProvider();
       const googleLogIn = await signInWithPopup(auth, provider);
+
+      if (googleLogIn) {
+        await fetch(`/api/account/sign_in`, {
+          method: "POST",
+          body: JSON.stringify({ uid: googleLogIn.user.uid }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -46,8 +56,10 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const logOut = () => {
+  const logOut = async () => {
     signOut(auth);
+
+    await fetch(`/api/account/log_out`, { method: "DELETE" });
   };
 
   useEffect(() => {
