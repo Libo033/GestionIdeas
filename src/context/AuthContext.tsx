@@ -42,6 +42,8 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
           },
         });
       }
+
+      location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -51,6 +53,8 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     try {
       const provider = new FacebookAuthProvider();
       const facebookLogIn = await signInWithPopup(auth, provider);
+
+      location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -60,6 +64,8 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     signOut(auth);
 
     await fetch(`/api/account/log_out`, { method: "DELETE" });
+
+    location.reload();
   };
 
   useEffect(() => {
