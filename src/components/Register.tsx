@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useId } from "react";
+import React, { useContext, useId, useState } from "react";
 import styles from "./Components.module.css";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
@@ -9,6 +9,7 @@ import { AuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 
 const Register: React.FC<{ signIn: string }> = ({ signIn }) => {
+  const [error, setError] = useState<boolean>(false);
   const { signUp } = useContext(AuthContext);
   const router = useRouter();
   const $NAME = useId();
@@ -16,16 +17,18 @@ const Register: React.FC<{ signIn: string }> = ({ signIn }) => {
   const $EMAIL = useId();
   const $PASSWORD = useId();
 
-  const createNewUser = () => {
+  const createNewUser = async () => {
     if (signUp) {
-      const res: boolean = signUp(
+      const res: boolean | Error = await signUp(
         (document.getElementById($EMAIL) as HTMLInputElement).value,
         (document.getElementById($PASSWORD) as HTMLInputElement).value
       );
 
-      if (res) {
+      if (!(res instanceof Error)) {
         router.push("/");
       }
+
+      setError(true);
     }
   };
 
@@ -49,6 +52,7 @@ const Register: React.FC<{ signIn: string }> = ({ signIn }) => {
             variant="outlined"
             fullWidth={true}
             type="text"
+            error={error}
             required
           />
           <TextField
@@ -57,6 +61,7 @@ const Register: React.FC<{ signIn: string }> = ({ signIn }) => {
             variant="outlined"
             fullWidth={true}
             type="text"
+            error={error}
             required
           />
         </div>
@@ -67,6 +72,7 @@ const Register: React.FC<{ signIn: string }> = ({ signIn }) => {
             variant="outlined"
             fullWidth={true}
             type="email"
+            error={error}
             required
           />
         </div>
@@ -77,6 +83,7 @@ const Register: React.FC<{ signIn: string }> = ({ signIn }) => {
             variant="outlined"
             fullWidth={true}
             type="password"
+            error={error}
             required
           />
         </div>
