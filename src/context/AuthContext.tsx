@@ -35,12 +35,12 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
   const googleSignIn = async (): Promise<void> => {
     try {
       const provider = new GoogleAuthProvider();
-      const googleLogIn = await signInWithPopup(auth, provider);
+      const userCredentials = await signInWithPopup(auth, provider);
 
-      if (googleLogIn) {
+      if (userCredentials) {
         await fetch(`/api/account/sign_in`, {
           method: "POST",
-          body: JSON.stringify({ uid: googleLogIn.user.uid }),
+          body: JSON.stringify({ uid: userCredentials.user.uid }),
           headers: {
             "Content-Type": "application/json",
           },
@@ -58,12 +58,12 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
   const facebookSignIn = async (): Promise<void> => {
     try {
       const provider = new FacebookAuthProvider();
-      const facebookLogIn = await signInWithPopup(auth, provider);
+      const userCredentials = await signInWithPopup(auth, provider);
 
-      if (facebookLogIn) {
+      if (userCredentials) {
         await fetch(`/api/account/sign_in`, {
           method: "POST",
-          body: JSON.stringify({ uid: facebookLogIn.user.uid }),
+          body: JSON.stringify({ uid: userCredentials.user.uid }),
           headers: {
             "Content-Type": "application/json",
           },
@@ -78,7 +78,10 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const signUp = async (email: string, password: string): Promise<boolean> => {
+  const signUp = async (
+    email: string,
+    password: string
+  ): Promise<boolean | Error> => {
     try {
       const newUser = await createUserWithEmailAndPassword(
         auth,
@@ -93,22 +96,39 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
       }
     } catch (error) {
       if (error instanceof Error) {
-        console.log(error.message);
+        return error;
       }
       return false;
     }
   };
 
-  const signIn = async (email: string, password: string): Promise<Error | undefined> => {
+  const signIn = async (
+    email: string,
+    password: string
+  ): Promise<Error | boolean> => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const userCredentials = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
-      // TO DO - ADD POST `/api/account/sign_in`
+      if (userCredentials) {
+        await fetch(`/api/account/sign_in`, {
+          method: "POST",
+          body: JSON.stringify({ uid: userCredentials.user.uid }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      }
 
-      location.reload();
+      return true;
     } catch (error) {
       if (error instanceof Error) {
         return error;
+      } else {
+        return new Error("Something went wrong. Try again in a few minutes.");
       }
     }
   };

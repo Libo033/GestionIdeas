@@ -16,7 +16,7 @@ const Login: React.FC<{ forgotPass: string; signUp: string }> = ({
   const $EMAIL = useId();
   const $PASSWORD = useId();
 
-  const signInWithEmail = async () => {
+  const signInWithEmail = async (): Promise<void> => {
     if (signIn) {
       let result = await signIn(
         (document.getElementById($EMAIL) as HTMLInputElement).value,
@@ -25,12 +25,11 @@ const Login: React.FC<{ forgotPass: string; signUp: string }> = ({
 
       if (result instanceof Error) {
         setError(true);
-        setErrorMessage(
-          result.message.slice(0, result.message.indexOf("(auth/")) ||
-            "Something went wrong. Try again in a few minutes."
-        );
+        setErrorMessage("Something went wrong. Try again.");
         (document.getElementById($EMAIL) as HTMLInputElement).value = "";
         (document.getElementById($PASSWORD) as HTMLInputElement).value = "";
+      } else {
+        location.reload();
       }
     }
   };
