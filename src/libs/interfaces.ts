@@ -5,5 +5,6 @@ export interface IAuthContext {
   googleSignIn: Function | null;
   facebookSignIn: Function | null;
   logOut: Function | null;
+  signUp: Function | null;
   loaded: boolean;
 }

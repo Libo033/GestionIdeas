@@ -8,6 +8,7 @@ import {
   onAuthStateChanged,
   FacebookAuthProvider,
   GoogleAuthProvider,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 import React, { useEffect, useState, createContext } from "react";
 
@@ -17,6 +18,7 @@ const defaultValue: IAuthContext = {
   facebookSignIn: null,
   logOut: null,
   loaded: false,
+  signUp: null
 };
 
 export const AuthContext: React.Context<IAuthContext> =
@@ -45,7 +47,9 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
 
       location.reload();
     } catch (error) {
-      console.log(error);
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
     }
   };
 
@@ -54,9 +58,44 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
       const provider = new FacebookAuthProvider();
       const facebookLogIn = await signInWithPopup(auth, provider);
 
+      if (facebookLogIn) {
+        await fetch(`/api/account/sign_in`, {
+          method: "POST",
+          body: JSON.stringify({ uid: facebookLogIn.user.uid }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      }
+
       location.reload();
     } catch (error) {
-      console.log(error);
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
+    }
+  };
+
+  const signUp = async (email: string, password: string): Promise<boolean> => {
+    try {
+      const newUser = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      console.log(newUser);
+
+      if (newUser) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
+      return false;
     }
   };
 
@@ -83,7 +122,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <AuthContext.Provider
-      value={{ loaded, user, logOut, googleSignIn, facebookSignIn }}
+      value={{ loaded, user, logOut, googleSignIn, facebookSignIn, signUp }}
     >
       {children}
     </AuthContext.Provider>
