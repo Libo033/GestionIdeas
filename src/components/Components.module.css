@@ -48,6 +48,12 @@
 .login_SignUpContainer a:hover {
   text-decoration-color: rgba(25, 118, 210);
 }
+
+.login_errorSpan {
+  color: #d32f2f;
+  font-size: 14px;
+  text-align: center;
+}
 /*#endregion */
 
 /*#region REGISTER */

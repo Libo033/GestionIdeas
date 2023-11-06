@@ -9,6 +9,7 @@ import {
   FacebookAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import React, { useEffect, useState, createContext } from "react";
 
@@ -18,7 +19,8 @@ const defaultValue: IAuthContext = {
   facebookSignIn: null,
   logOut: null,
   loaded: false,
-  signUp: null
+  signUp: null,
+  signIn: null,
 };
 
 export const AuthContext: React.Context<IAuthContext> =
@@ -30,7 +32,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
   const [loaded, setLoaded] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
 
-  const googleSignIn = async () => {
+  const googleSignIn = async (): Promise<void> => {
     try {
       const provider = new GoogleAuthProvider();
       const googleLogIn = await signInWithPopup(auth, provider);
@@ -53,7 +55,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const facebookSignIn = async () => {
+  const facebookSignIn = async (): Promise<void> => {
     try {
       const provider = new FacebookAuthProvider();
       const facebookLogIn = await signInWithPopup(auth, provider);
@@ -84,8 +86,6 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
         password
       );
 
-      console.log(newUser);
-
       if (newUser) {
         return true;
       } else {
@@ -99,7 +99,21 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const logOut = async () => {
+  const signIn = async (email: string, password: string): Promise<Error | undefined> => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+
+      // TO DO - ADD POST `/api/account/sign_in`
+
+      location.reload();
+    } catch (error) {
+      if (error instanceof Error) {
+        return error;
+      }
+    }
+  };
+
+  const logOut = async (): Promise<void> => {
     signOut(auth);
 
     await fetch(`/api/account/log_out`, { method: "DELETE" });
@@ -122,7 +136,15 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <AuthContext.Provider
-      value={{ loaded, user, logOut, googleSignIn, facebookSignIn, signUp }}
+      value={{
+        loaded,
+        user,
+        logOut,
+        googleSignIn,
+        facebookSignIn,
+        signUp,
+        signIn,
+      }}
     >
       {children}
     </AuthContext.Provider>

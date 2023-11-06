@@ -6,5 +6,6 @@ export interface IAuthContext {
   facebookSignIn: Function | null;
   logOut: Function | null;
   signUp: Function | null;
+  signIn: Function | null;
   loaded: boolean;
 }
