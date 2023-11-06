@@ -199,6 +199,16 @@
 .Recover_SignInContainer a:hover {
   text-decoration-color: rgba(25, 118, 210);
 }
+
+.Recover_Sent {
+  margin-top: 21px;
+  margin-bottom: 36px;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
 /*#endregion */
 
 @media (max-width: 700px) {

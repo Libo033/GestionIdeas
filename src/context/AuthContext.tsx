@@ -10,6 +10,7 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import React, { useEffect, useState, createContext } from "react";
 
@@ -21,6 +22,7 @@ const defaultValue: IAuthContext = {
   loaded: false,
   signUp: null,
   signIn: null,
+  recoverPassword: null,
 };
 
 export const AuthContext: React.Context<IAuthContext> =
@@ -133,6 +135,18 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
+  const recoverPassword = async (email: string) => {
+    try {
+      let res = await sendPasswordResetEmail(auth, email);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+
+        return error;
+      }
+    }
+  };
+
   const logOut = async (): Promise<void> => {
     signOut(auth);
 
@@ -164,6 +178,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
         facebookSignIn,
         signUp,
         signIn,
+        recoverPassword,
       }}
     >
       {children}

@@ -7,5 +7,6 @@ export interface IAuthContext {
   logOut: Function | null;
   signUp: Function | null;
   signIn: Function | null;
+  recoverPassword: Function | null;
   loaded: boolean;
 }
