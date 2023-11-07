@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Titillium_Web } from "next/font/google";
-import "./globals.css";
+import "../../app/globals.css";
 import { AuthContextProvider } from "@/context/AuthContext";
+import NavigationBar from "@/components/NavigationBar";
 
 const titi = Titillium_Web({
   subsets: ["latin"],
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <AuthContextProvider>
         <body className={titi.className}>
+          <NavigationBar />
           {children}
         </body>
       </AuthContextProvider>
