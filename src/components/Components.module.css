@@ -211,6 +211,38 @@
 }
 /*#endregion */
 
+/*#region NAVIGATION BAR */
+.NavigationBar {
+  max-width: 1536px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding-block: 24px;
+  padding-inline: 5%;
+}
+
+.NavigationBar_ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+.NavigationBar_logoContainer {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.NavigationBar_logoContainer span {
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.NavigationBar_menuContainer {
+  cursor: pointer;
+}
+/*#endregion */
+
 @media (max-width: 700px) {
   /*#region LOGIN */
   .login_Form {
@@ -237,6 +269,12 @@
   /*#region RECOVER */
   .Recover_Form {
     width: 90%;
+  }
+  /*#endregion */
+
+  /*#region NAVIGATION BAR */
+  .NavigationBar_logoContainer span {
+    font-size: 24px;
   }
   /*#endregion */
 }
