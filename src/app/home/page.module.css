@@ -1,12 +1,50 @@
 .Dashboard {
+  height: calc(100vh - 100px);
   max-width: 1536px;
   margin-left: auto;
   margin-right: auto;
   padding-inline: 4.5%;
-  padding-block: 1.5%;
+  padding-block: 1%;
+  background-color: #f5f5f5;
 }
 
 .Dashboard_welcome {
   font-size: 18px;
   margin-block: 15px;
+}
+
+.Dashboard_welcome h1 {
+  color: #0f4d75;
+  text-decoration: underline;
+  text-decoration-color: #0f4d75;
+}
+
+.Dashboard_subTitle {
+  font-size: 22.2px;
+}
+
+.Dashboard_section {
+  padding-block: 21px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 21px;
+}
+
+.Dashboard_article {
+  transition: 150ms ease-in-out;
+  background-color: #fff;
+  width: 48%;
+  min-width: 400px;
+  border: 1px solid #3283b8;
+  border-radius: 15px;
+  padding-block: 15px;
+  padding-inline: 30px;
+  box-shadow: 1px 3px 9px gainsboro;
+  cursor: default;
+}
+
+.Dashboard_article:hover {
+  transition: 150ms ease-in-out;
+  background-color: #bde1fa;
 }
