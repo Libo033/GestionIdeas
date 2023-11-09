@@ -219,6 +219,8 @@
   width: 100%;
   padding-block: 24px;
   padding-inline: 5%;
+  border-bottom: 1px solid #60606030;
+  box-shadow: 1px 6px 15px #60606021;
 }
 
 .NavigationBar_ul {

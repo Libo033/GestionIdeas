@@ -1,5 +1,6 @@
 "use client";
 import { AuthContext } from "@/context/AuthContext";
+import Link from "next/link";
 import React, { useContext } from "react";
 
 const Notes = () => {
@@ -7,7 +8,12 @@ const Notes = () => {
 
   return (
     <main>
-      Notes
+      <div className="Dashboard_Breadcrumbs">
+        <span>{"/ "}</span>
+        <Link href={"/home"}>Home</Link>
+        <span>{" / "}</span>
+        <span>Notes</span>
+      </div>
     </main>
   );
 };

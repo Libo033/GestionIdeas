@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useContext, useEffect } from "react";
 import Register from "@/components/Register";
 import { useRouter } from "next/navigation";
@@ -10,7 +10,7 @@ const CreateAccount = () => {
 
   useEffect(() => {
     if (user !== null && loaded) {
-      router.push("/dashboard");
+      router.push("/home");
     }
   }, [loaded, user]);
 
