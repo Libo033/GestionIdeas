@@ -17,7 +17,7 @@ const NavigationDrawer = () => {
           <p className={styles.NavigationDrawer_ulTitle}>General</p>
         </li>
         <li>
-          <Link className={styles.NavigationDrawer_link} href={"/dashboard"}>
+          <Link className={styles.NavigationDrawer_link} href={"/home/dashboard"}>
             <div className={styles.NavigationDrawer_linkContent}>
               <Image
                 src={"/img/dashboard.svg"}
@@ -30,7 +30,7 @@ const NavigationDrawer = () => {
           </Link>
         </li>
         <li>
-          <Link className={styles.NavigationDrawer_link} href={"/dashboard"}>
+          <Link className={styles.NavigationDrawer_link} href={"/home/notes"}>
             <div className={styles.NavigationDrawer_linkContent}>
               <Image
                 src={"/img/notes.svg"}
@@ -43,7 +43,7 @@ const NavigationDrawer = () => {
           </Link>
         </li>
         <li>
-          <Link className={styles.NavigationDrawer_link} href={"/dashboard"}>
+          <Link className={styles.NavigationDrawer_link} href={"/home/kanban"}>
             <div className={styles.NavigationDrawer_linkContent}>
               <Image
                 src={"/img/kanban.svg"}

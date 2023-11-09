@@ -16,7 +16,7 @@ const NavigationBar = () => {
       <ul className={styles.NavigationBar_ul}>
         <li
           className={styles.NavigationBar_logoContainer}
-          onClick={() => router.push("/dashboard")}
+          onClick={() => router.push("/home")}
         >
           <Image src={"/img/logo.svg"} alt="logo" width={45} height={45} />
           <span>IDEARIO</span>
