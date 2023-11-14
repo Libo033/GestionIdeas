@@ -1,4 +1,4 @@
-.Dashboard {
+.Home {
   height: calc(100vh - 100px);
   max-width: 1536px;
   margin-left: auto;
@@ -8,24 +8,24 @@
   background-color: #f9f9f9;
 }
 
-.Dashboard_welcome {
+.Home_welcome {
   font-size: 18px;
   margin-block: 9px;
 }
 
-.Dashboard_welcome h1 {
+.Home_welcome h1 {
   font-size: 42px;
   color: #0f4d75;
   text-align: center;
 }
 
-.Dashboard_section {
+.Home_section {
   margin-top: 15px;
   display: flex;
   justify-content: space-evenly;
 }
 
-.Dashboard_article {
+.Home_article {
   min-width: 410px;
   margin-block: 32px;
   width: 42%;
@@ -39,30 +39,30 @@
   box-shadow: 1px 3px 12px gray;
 }
 
-.Dashboard_article img {
+.Home_article img {
   width: 270px;
   height: auto;
 }
 
-.Dashboard_articleTitle {
+.Home_articleTitle {
   font-size: 21px;
   font-weight: 700;
   color: #1b262c;
   margin-bottom: 9px;
 }
 
-.Dashboard_article p {
+.Home_article p {
   text-align: justify;
   color: #0f4d75;
 }
 
-.Dashboard_buttonAdminContainer {
+.Home_buttonAdminContainer {
   margin-block: 21px;
   display: flex;
   justify-content: center;
 }
 
-.Dashboard_buttonAdmin {
+.Home_buttonAdmin {
   transition: 120ms ease-in-out 0s;
   color: #ffffff;
   background-color: #1b262c;
@@ -75,19 +75,19 @@
   cursor: pointer;
 }
 
-.Dashboard_buttonAdmin:hover {
+.Home_buttonAdmin:hover {
   transition: 120ms ease-in-out 0s;
   background-color: #62c0bf;
 }
 
 @media (min-width: 701px) and (max-width: 1120px) {
-  .Dashboard_section {
+  .Home_section {
     justify-content: space-evenly;
     flex-wrap: wrap;
     column-gap: 32px;
   }
 
-  .Dashboard_article {
+  .Home_article {
     margin-block: 32px;
     width: 48%;
     flex-direction: column;
@@ -95,22 +95,22 @@
 }
 
 @media (max-width: 700px) {
-  .Dashboard_welcome h1 {
+  .Home_welcome h1 {
     font-size: 33px;
   }
 
-  .Dashboard_section {
+  .Home_section {
     margin-top: 16px;
     flex-wrap: wrap;
   }
 
-  .Dashboard_article {
+  .Home_article {
     min-width: 210px;
     margin-block: 32px;
     width: 93%;
   }
 
-  .Dashboard_article img {
+  .Home_article img {
     width: 240px;
   }
 }

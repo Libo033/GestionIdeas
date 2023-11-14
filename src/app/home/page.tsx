@@ -8,15 +8,15 @@ const Dashboard = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <main className={styles.Dashboard}>
+    <main className={styles.Home}>
       {user && (
         <>
-          <div className={styles.Dashboard_welcome}>
+          <div className={styles.Home_welcome}>
             <h1>Administra todas tus tareas aquí</h1>
           </div>
-          <section className={styles.Dashboard_section}>
-            <article className={styles.Dashboard_article}>
-              <p className={styles.Dashboard_articleTitle}>KANBAN</p>
+          <section className={styles.Home_section}>
+            <article className={styles.Home_article}>
+              <p className={styles.Home_articleTitle}>KANBAN</p>
               <Image
                 src={"/img/notesflatline.svg"}
                 alt="kanban"
@@ -30,8 +30,8 @@ const Dashboard = () => {
                 ese proceso.
               </p>
             </article>
-            <article className={styles.Dashboard_article}>
-              <p className={styles.Dashboard_articleTitle}>NOTES</p>
+            <article className={styles.Home_article}>
+              <p className={styles.Home_articleTitle}>NOTES</p>
               <Image
                 src={"/img/notesoutline.svg"}
                 alt="kanban"
@@ -46,8 +46,10 @@ const Dashboard = () => {
               </p>
             </article>
           </section>
-          <div className={styles.Dashboard_buttonAdminContainer}>
-            <button className={styles.Dashboard_buttonAdmin}>Administra tus tareas</button>
+          <div className={styles.Home_buttonAdminContainer}>
+            <button className={styles.Home_buttonAdmin}>
+              Administra tus tareas
+            </button>
           </div>
         </>
       )}
