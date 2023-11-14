@@ -2,12 +2,13 @@
 import { AuthContext } from "@/context/AuthContext";
 import Link from "next/link";
 import React, { useContext } from "react";
+import styles from "./page.module.css";
 
 const Notes = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <main>
+    <main className={styles.Notes}>
       <div className="Dashboard_Breadcrumbs">
         <span>{"/ "}</span>
         <Link href={"/home"}>Home</Link>
