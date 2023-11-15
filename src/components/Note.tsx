@@ -10,7 +10,9 @@ const Note: React.FC<INote> = (props) => {
   return (
     <>
       <Modal open={modal} onClose={() => setModal(false)}>
-        <NoteModal {...props} setModal={setModal} />
+        <div className={styles.Note_modal}>
+          <NoteModal {...props} setModal={setModal} />
+        </div>
       </Modal>
       <article onClick={() => setModal(true)} className={styles.Note}>
         <div className={styles.Note_titleContainer}>
