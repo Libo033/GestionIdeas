@@ -1,4 +1,5 @@
 import { User } from "firebase/auth";
+import React from "react";
 
 export interface IAuthContext {
   user: User | null;
@@ -17,4 +18,13 @@ export interface INote {
   content: string;
   create_date: string;
   expire_date: Date;
+}
+
+export interface INoteModal {
+  _id: string;
+  title: string;
+  content: string;
+  create_date: string;
+  expire_date: Date;
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
