@@ -10,3 +10,11 @@ export interface IAuthContext {
   recoverPassword: Function | null;
   loaded: boolean;
 }
+
+export interface INote {
+  _id: string;
+  title: string;
+  content: string;
+  create_date: string;
+  expire_date: Date;
+}
