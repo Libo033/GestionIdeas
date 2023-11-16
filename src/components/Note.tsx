@@ -1,18 +1,31 @@
 import { INote } from "@/libs/interfaces";
 import React, { useState } from "react";
 import styles from "./Components.module.css";
-import { Modal } from "@mui/material";
+import { Fade, Modal } from "@mui/material";
 import NoteModal from "./NoteModal";
+import Backdrop from "@mui/material/Backdrop";
 
 const Note: React.FC<INote> = (props) => {
   const [modal, setModal] = useState<boolean>(false);
 
   return (
     <>
-      <Modal open={modal} onClose={() => setModal(false)}>
-        <div className={styles.Note_modal}>
-          <NoteModal {...props} setModal={setModal} />
-        </div>
+      <Modal
+        open={modal}
+        onClose={() => setModal(false)}
+        closeAfterTransition={true}
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: {
+            timeout: 300,
+          },
+        }}
+      >
+        <Fade in={modal}>
+          <div className={styles.Note_modal}>
+            <NoteModal {...props} setModal={setModal} />
+          </div>
+        </Fade>
       </Modal>
       <article onClick={() => setModal(true)} className={styles.Note}>
         <div className={styles.Note_titleContainer}>
