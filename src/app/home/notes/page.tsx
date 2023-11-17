@@ -17,6 +17,7 @@ const Notes = () => {
         <span>Notes</span>
       </div>
       <h1>Notes</h1>
+      <Link href={"/home/notes/new"}>Create note</Link>
       <section className={styles.Notes_notesContainer}>
         <Note
           title={"Mi primera Nota - Valentin Libonati - 11/2023"}
