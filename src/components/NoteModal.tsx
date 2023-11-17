@@ -1,17 +1,22 @@
+"use client";
 import { INoteModal } from "@/libs/interfaces";
 import React from "react";
 import styles from "./Components.module.css";
 import Image from "next/image";
 import { Tooltip } from "@mui/material";
 import Zoom from "@mui/material/Zoom";
+import { useRouter } from "next/navigation";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 const NoteModal: React.FC<INoteModal> = (props) => {
-  const handleEdit = (id: string) => {
-    console.log(id);
+  const router: AppRouterInstance = useRouter();
+
+  const handleEdit = (id: string): void => {
+    router.push(`/home/notes/edit?id=${id}`);
   };
 
-  const handleDelete = (id: string) => {
-    console.log(id);
+  const handleDelete = async (id: string): Promise<void> => {
+    await fetch(`/api/notes/delete`, { method: "DELETE" });
   };
 
   return (
