@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import styles from "./page.module.css";
+import NoteHandler from "@/components/NoteHandler";
 
 const page = () => {
   return (
@@ -14,6 +15,7 @@ const page = () => {
         <span>New</span>
       </div>
       <h1>New Note</h1>
+      <NoteHandler id={undefined} />
     </main>
   );
 };

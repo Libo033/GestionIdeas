@@ -28,3 +28,7 @@ export interface INoteModal {
   expire_date: Date;
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export interface INoteHandler {
+  id: string | undefined;
+}
