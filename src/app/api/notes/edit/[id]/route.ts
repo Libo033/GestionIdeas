@@ -17,7 +17,8 @@ export async function PUT(
       return Response.json({ Error: "Account doesn't exist" }, { status: 401 });
     }
 
-    const db: Db = client.db(mySession.value);
+    const my_db_name = mySession.value.replaceAll(".", "-");
+    const db: Db = client.db(my_db_name);
 
     const edit_note = {
       title: data.title,

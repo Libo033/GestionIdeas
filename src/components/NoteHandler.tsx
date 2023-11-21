@@ -33,7 +33,7 @@ const NoteHandler: React.FC<INoteHandler> = (props) => {
 
       const result: Response = await response.json();
 
-      if (result.status === 200) {
+      if (result) {
         router.push("/home/notes");
       }
     } catch (error) {
