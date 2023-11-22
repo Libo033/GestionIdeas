@@ -12,6 +12,7 @@ export async function PUT(
   try {
     const client: MongoClient = await clientPromise;
     const mySession: RequestCookie | undefined = cookies().get("mySession");
+    const id = params.id;
     let secret_key: Uint8Array = new TextEncoder().encode(
       process.env.JWT_SECRET
     );
@@ -41,7 +42,7 @@ export async function PUT(
 
     const edit_note_edited = await db
       .collection("notes")
-      .updateOne(new ObjectId(params.id), { $set: edit_note });
+      .updateOne({ _id: new ObjectId(id) }, { $set: edit_note });
 
     return Response.json(edit_note_edited.acknowledged, { status: 200 });
   } catch (error) {

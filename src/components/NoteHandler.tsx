@@ -1,5 +1,5 @@
 "use client";
-import React, { FormEvent } from "react";
+import React, { FormEvent, useEffect } from "react";
 import styles from "./Components.module.css";
 import { INoteHandler } from "@/libs/interfaces";
 import { useRouter } from "next/navigation";
@@ -48,6 +48,31 @@ const NoteHandler: React.FC<INoteHandler> = (props) => {
     id: string
   ): Promise<void> => {};
 
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+    let d = document;
+
+    if (props.id) {
+      fetch(`/api/notes/${props.id}`, { signal })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          (d.getElementById("note_handler_title") as HTMLInputElement).value =
+            data.title;
+          (d.getElementById("note_handler_content") as HTMLInputElement).value =
+            data.content;
+        })
+        .catch((error) => {
+          if (error instanceof Error) {
+            console.log(error.message);
+          }
+        });
+    }
+
+    return () => controller.abort();
+  }, []);
+
   return (
     <div className={styles.NoteHandler}>
       <form
@@ -59,6 +84,7 @@ const NoteHandler: React.FC<INoteHandler> = (props) => {
         <div className={styles.NoteHandler_textField}>
           <TextField
             id="note_handler_title"
+            InputLabelProps={{ shrink: props.id ? true : false }}
             label="TITLE"
             variant="filled"
             fullWidth
@@ -68,6 +94,7 @@ const NoteHandler: React.FC<INoteHandler> = (props) => {
         <div className={styles.NoteHandler_textField}>
           <TextField
             id="note_handler_content"
+            InputLabelProps={{ shrink: props.id ? true : false }}
             label="CONTENT"
             variant="filled"
             multiline
