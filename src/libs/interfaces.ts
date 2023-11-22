@@ -25,7 +25,7 @@ export interface INoteModal {
   title: string;
   content: string;
   create_date: string;
-  expire_date: Date;
+  expire_date: number;
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 

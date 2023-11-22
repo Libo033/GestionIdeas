@@ -37,8 +37,8 @@ const Note: React.FC<INote> = (props) => {
         </div>
         <div className={styles.Note_contentContainer}>
           <p>
-            {props.content.length > 90
-              ? props.content.slice(0, 117) + "..."
+            {props.content.length > 99
+              ? props.content.slice(0, 99) + "..."
               : props.content}
           </p>
         </div>
