@@ -4,11 +4,15 @@ import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { cookies } from "next/headers";
 import { JWTPayload, JWTVerifyResult, jwtVerify } from "jose";
 
-export async function DELETE({ params }: { params: { id: string } }) {
+export async function DELETE(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
   // DELETE 1 NOTE
   try {
     const client: MongoClient = await clientPromise;
     const mySession: RequestCookie | undefined = cookies().get("mySession");
+    const id = params.id;
     let secret_key: Uint8Array = new TextEncoder().encode(
       process.env.JWT_SECRET
     );
@@ -30,7 +34,7 @@ export async function DELETE({ params }: { params: { id: string } }) {
 
     const note_deleted = await db
       .collection("notes")
-      .deleteOne(new ObjectId(params.id));
+      .deleteOne({ _id: new ObjectId(id) });
 
     return Response.json(
       { deleted: note_deleted.acknowledged },
