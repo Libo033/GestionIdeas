@@ -1,12 +1,31 @@
 "use client";
-import { AuthContext } from "@/context/AuthContext";
 import Link from "next/link";
-import React, { useContext } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import Note from "@/components/Note";
+import { INote } from "@/libs/interfaces";
+import NotePlaceHolder from "@/components/NotePlaceHolder";
 
 const Notes = () => {
-  const { user } = useContext(AuthContext);
+  const [notes, setNotes] = useState<INote[]>([]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    fetch(`/api/notes`, { signal })
+      .then((res) => res.json())
+      .then((data) => {
+        setNotes(data);
+      })
+      .catch((error) => {
+        if (error instanceof Error) {
+          console.log(error.message);
+        }
+      });
+
+    return () => controller.abort();
+  }, []);
 
   return (
     <main className={styles.Notes}>
@@ -19,31 +38,27 @@ const Notes = () => {
       <h1>Notes</h1>
       <Link href={"/home/notes/new"}>Create note</Link>
       <section className={styles.Notes_notesContainer}>
-        <Note
-          title={"Mi primera Nota - Valentin Libonati - 11/2023"}
-          content={
-            "Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen."
-          }
-          create_date={new Date().toLocaleString()}
-          expire_date={new Date()}
-          _id={"1"}
-        />
-        <Note
-          title={"Mi primera Nota - Valentin Libonati"}
-          content={"Lorem Ipsum."}
-          create_date={new Date().toLocaleString()}
-          expire_date={new Date()}
-          _id={"2"}
-        />
-        <Note
-          title={"Mi primera Nota - Valentin Libonati"}
-          content={
-            "Probando el componente creado como ejemplo de mi primera nota."
-          }
-          create_date={new Date().toLocaleString()}
-          expire_date={new Date()}
-          _id={"3"}
-        />
+        {notes.length > 0 ? (
+          notes.map((note) => (
+            <Note
+              key={note._id}
+              title={note.title}
+              content={note.content}
+              create_date={note.create_date}
+              expire_date={note.expire_date}
+              _id={note._id}
+            />
+          ))
+        ) : (
+          <>
+            <NotePlaceHolder />
+            <NotePlaceHolder />
+            <NotePlaceHolder />
+            <NotePlaceHolder />
+            <NotePlaceHolder />
+            <NotePlaceHolder />
+          </>
+        )}
       </section>
     </main>
   );

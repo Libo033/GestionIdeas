@@ -17,7 +17,7 @@ export interface INote {
   title: string;
   content: string;
   create_date: string;
-  expire_date: Date;
+  expire_date: number;
 }
 
 export interface INoteModal {
