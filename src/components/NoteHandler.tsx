@@ -5,48 +5,10 @@ import { INoteHandler } from "@/libs/interfaces";
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { TextField } from "@mui/material";
+import { handleEditNote, handleNewNote } from "@/libs/noteHandlers";
 
 const NoteHandler: React.FC<INoteHandler> = (props) => {
   const router: AppRouterInstance = useRouter();
-
-  const handleNewNote = async (Event: FormEvent): Promise<void> => {
-    try {
-      Event.preventDefault();
-
-      let fecha = (
-        document.getElementById("note_handler_expire") as HTMLInputElement
-      ).value;
-
-      const response = await fetch(`/api/notes/new`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          title: (
-            document.getElementById("note_handler_title") as HTMLInputElement
-          ).value,
-          content: (
-            document.getElementById("note_handler_content") as HTMLInputElement
-          ).value,
-          expire_date: fecha ? new Date(fecha).getTime() : 0,
-        }),
-      });
-
-      const result: Response = await response.json();
-
-      if (result) {
-        router.push("/home/notes");
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        console.log(error.message);
-      }
-    }
-  };
-
-  const handleEditNote = async (
-    Event: FormEvent,
-    id: string
-  ): Promise<void> => {};
 
   useEffect(() => {
     const controller = new AbortController();
@@ -78,7 +40,9 @@ const NoteHandler: React.FC<INoteHandler> = (props) => {
       <form
         className={styles.NoteHandler_form}
         onSubmit={(Event: FormEvent) =>
-          props.id ? handleEditNote(Event, props.id) : handleNewNote(Event)
+          props.id
+            ? handleEditNote(Event, props.id, router)
+            : handleNewNote(Event, router)
         }
       >
         <div className={styles.NoteHandler_textField}>

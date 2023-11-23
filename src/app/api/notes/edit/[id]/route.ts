@@ -36,7 +36,6 @@ export async function PUT(
     const edit_note = {
       title: data.title,
       content: data.content,
-      create_date: new Date().toLocaleString(),
       expire_date: data.expire_date,
     };
 
