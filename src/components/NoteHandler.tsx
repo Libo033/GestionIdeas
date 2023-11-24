@@ -1,7 +1,7 @@
 "use client";
 import React, { FormEvent, useEffect } from "react";
 import styles from "./Components.module.css";
-import { INoteHandler } from "@/libs/interfaces";
+import { INote, INoteHandler } from "@/libs/interfaces";
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { TextField } from "@mui/material";
@@ -18,12 +18,16 @@ const NoteHandler: React.FC<INoteHandler> = (props) => {
     if (props.id) {
       fetch(`/api/notes/${props.id}`, { signal })
         .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
+        .then((data: INote) => {
           (d.getElementById("note_handler_title") as HTMLInputElement).value =
             data.title;
           (d.getElementById("note_handler_content") as HTMLInputElement).value =
             data.content;
+          if (data.expire_date !== 0) {
+            (
+              d.getElementById("note_handler_expire") as HTMLInputElement
+            ).value = new Date(data.expire_date).toISOString().slice(0, 10);
+          }
         })
         .catch((error) => {
           if (error instanceof Error) {
@@ -48,7 +52,7 @@ const NoteHandler: React.FC<INoteHandler> = (props) => {
         <div className={styles.NoteHandler_textField}>
           <TextField
             id="note_handler_title"
-            InputLabelProps={{ shrink: props.id ? true : false }}
+            InputLabelProps={{ shrink: true }}
             label="TITLE"
             variant="filled"
             fullWidth
@@ -58,7 +62,7 @@ const NoteHandler: React.FC<INoteHandler> = (props) => {
         <div className={styles.NoteHandler_textField}>
           <TextField
             id="note_handler_content"
-            InputLabelProps={{ shrink: props.id ? true : false }}
+            InputLabelProps={{ shrink: true }}
             label="CONTENT"
             variant="filled"
             multiline
