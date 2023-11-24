@@ -25,9 +25,12 @@ const Notes = () => {
         }
       });
 
+      setLoaded(true);
+
     return () => controller.abort();
   }, []);
 
+  
   return (
     <main className={styles.Notes}>
       <div className="Dashboard_Breadcrumbs">
@@ -52,18 +55,20 @@ const Notes = () => {
           ))
         ) : (
           <>
-            {loaded ? (
+            {loaded && notes.length === 0 ? (
               <>
-                <NotePlaceHolder />
-                <NotePlaceHolder />
-                <NotePlaceHolder />
-                <NotePlaceHolder />
-                <NotePlaceHolder />
-                <NotePlaceHolder />
+                <p className={styles.Notes_loaded}>
+                  You'll see your notes here
+                </p>
               </>
             ) : (
               <>
-                <p className={styles.Notes_loaded}>You'll see your notes here</p>
+                <NotePlaceHolder />
+                <NotePlaceHolder />
+                <NotePlaceHolder />
+                <NotePlaceHolder />
+                <NotePlaceHolder />
+                <NotePlaceHolder />
               </>
             )}
           </>
