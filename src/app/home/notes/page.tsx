@@ -8,6 +8,7 @@ import NotePlaceHolder from "@/components/NotePlaceHolder";
 
 const Notes = () => {
   const [notes, setNotes] = useState<INote[]>([]);
+  const [loaded, setLoaded] = useState<boolean>(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -51,12 +52,20 @@ const Notes = () => {
           ))
         ) : (
           <>
-            <NotePlaceHolder />
-            <NotePlaceHolder />
-            <NotePlaceHolder />
-            <NotePlaceHolder />
-            <NotePlaceHolder />
-            <NotePlaceHolder />
+            {loaded ? (
+              <>
+                <NotePlaceHolder />
+                <NotePlaceHolder />
+                <NotePlaceHolder />
+                <NotePlaceHolder />
+                <NotePlaceHolder />
+                <NotePlaceHolder />
+              </>
+            ) : (
+              <>
+                <p className={styles.Notes_loaded}>You'll see your notes here</p>
+              </>
+            )}
           </>
         )}
       </section>
