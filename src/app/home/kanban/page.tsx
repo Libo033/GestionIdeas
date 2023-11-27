@@ -1,11 +1,21 @@
 "use client";
-import { AuthContext } from "@/context/AuthContext";
 import Link from "next/link";
-import React, { useContext } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
+import { IKanban } from "@/libs/interfaces";
 
 const Kanban = () => {
-  const { user } = useContext(AuthContext);
+  const [kanban, setKanban] = useState<IKanban[]>([]);
+  const [loaded, setLoaded] = useState<boolean>(false);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    setLoaded(true);
+
+    return () => controller.abort();
+  }, []);
 
   return (
     <main className={styles.Kanban}>
@@ -15,6 +25,10 @@ const Kanban = () => {
         <span>{" / "}</span>
         <span>Kanban</span>
       </div>
+      <h1>Kanban</h1>
+      <section className={styles.Kanban_cardsContainer}>
+
+      </section>
     </main>
   );
 };

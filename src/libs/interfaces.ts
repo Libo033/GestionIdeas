@@ -32,3 +32,16 @@ export interface INoteModal {
 export interface INoteHandler {
   id: string | undefined;
 }
+
+export interface IKanban {
+  _id: string;
+  name: string;
+  content: IKanbanItem[];
+  create_date: string;
+}
+
+export interface IKanbanItem {
+  _id: string;
+  data: string;
+  status: "to do" | "doing" | "done";
+}
