@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { IKanban } from "@/libs/interfaces";
+import KanbanCard from "@/components/KanbanCard";
 
 const Kanban = () => {
   const [kanban, setKanban] = useState<IKanban[]>([]);
@@ -27,7 +28,36 @@ const Kanban = () => {
       </div>
       <h1>Kanban</h1>
       <section className={styles.Kanban_cardsContainer}>
-
+        <KanbanCard
+          _id={"1"}
+          name={"IDEARIO SUPER TITLE TO OVERFLOW IT"}
+          content={[]}
+          create_date={"22/11/2023, 10:15:23"}
+        />
+        <KanbanCard
+          _id={"1"}
+          name={"IDEARIO SUPER TITLE"}
+          content={[]}
+          create_date={"22/11/2023, 10:15:23"}
+        />
+        <KanbanCard
+          _id={"1"}
+          name={"IDEARIO SUPER TITLE"}
+          content={[]}
+          create_date={"22/11/2023, 10:15:23"}
+        />
+        <KanbanCard
+          _id={"1"}
+          name={"IDEARIO SUPER TITLE"}
+          content={[]}
+          create_date={"22/11/2023, 10:15:23"}
+        />
+        <KanbanCard
+          _id={"1"}
+          name={"IDEARIO SUPER TITLE"}
+          content={[]}
+          create_date={"22/11/2023, 10:15:23"}
+        />
       </section>
     </main>
   );

@@ -587,6 +587,35 @@
 }
 /*#endregion */
 
+/*#region KANBANCARD */
+.KanbanCard {
+  transition: 120ms ease-in-out;
+  height: 81px;
+  min-width: 300px;
+  width: 100%;
+  padding: 6px;
+  border: 1px solid gray;
+  border-radius: 12px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.KanbanCard p {
+  font-size: 21px;
+  font-weight: 600;
+  color: #0f4d75;
+}
+
+.KanbanCard span {
+  color: #3283b8;
+  font-size: 12px;
+  text-align: right;
+}
+/*#endregion */
+
 @media (max-width: 700px) {
   /*#region LOGIN */
   .login_Form {
