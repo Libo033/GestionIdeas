@@ -27,28 +27,11 @@ const Kanban = () => {
         <span>Kanban</span>
       </div>
       <h1>Kanban</h1>
+      <Link href={"/home/kanban/new"}>Create kanban</Link>
       <section className={styles.Kanban_cardsContainer}>
         <KanbanCard
           _id={"1"}
           name={"IDEARIO SUPER TITLE TO OVERFLOW IT"}
-          content={[]}
-          create_date={"22/11/2023, 10:15:23"}
-        />
-        <KanbanCard
-          _id={"1"}
-          name={"IDEARIO SUPER TITLE"}
-          content={[]}
-          create_date={"22/11/2023, 10:15:23"}
-        />
-        <KanbanCard
-          _id={"1"}
-          name={"IDEARIO SUPER TITLE"}
-          content={[]}
-          create_date={"22/11/2023, 10:15:23"}
-        />
-        <KanbanCard
-          _id={"1"}
-          name={"IDEARIO SUPER TITLE"}
           content={[]}
           create_date={"22/11/2023, 10:15:23"}
         />
