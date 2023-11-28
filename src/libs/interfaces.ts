@@ -45,3 +45,7 @@ export interface IKanbanItem {
   data: string;
   status: "to do" | "doing" | "done";
 }
+
+export interface IKanbanHandler {
+  id: string | undefined;
+}

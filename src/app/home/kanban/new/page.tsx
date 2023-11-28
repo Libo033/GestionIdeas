@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../page.module.css";
 import Link from "next/link";
+import KanbanHandler from "@/components/KanbanHandler";
 
 const New = () => {
   return (
@@ -13,6 +14,8 @@ const New = () => {
         <span>{" / "}</span>
         <span>New</span>
       </div>
+      <h1>New kanban</h1>
+      <KanbanHandler id={undefined} />
     </main>
   );
 };
