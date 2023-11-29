@@ -25,12 +25,11 @@ const Notes = () => {
         }
       });
 
-      setLoaded(true);
+    setLoaded(true);
 
     return () => controller.abort();
   }, []);
 
-  
   return (
     <main className={styles.Notes}>
       <div className="Dashboard_Breadcrumbs">

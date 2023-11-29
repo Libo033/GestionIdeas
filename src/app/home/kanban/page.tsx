@@ -13,6 +13,17 @@ const Kanban = () => {
     const controller = new AbortController();
     const { signal } = controller;
 
+    fetch(`/api/kanban`, { signal })
+      .then((res) => res.json())
+      .then((data) => {
+        setKanban(data);
+      })
+      .catch((error) => {
+        if (error instanceof Error) {
+          console.log(error.message);
+        }
+      });
+
     setLoaded(true);
 
     return () => controller.abort();
@@ -29,18 +40,30 @@ const Kanban = () => {
       <h1>Kanban</h1>
       <Link href={"/home/kanban/new"}>Create kanban</Link>
       <section className={styles.Kanban_cardsContainer}>
-        <KanbanCard
-          _id={"1"}
-          name={"IDEARIO SUPER TITLE TO OVERFLOW IT"}
-          content={[]}
-          create_date={"22/11/2023, 10:15:23"}
-        />
-        <KanbanCard
-          _id={"1"}
-          name={"IDEARIO SUPER TITLE"}
-          content={[]}
-          create_date={"22/11/2023, 10:15:23"}
-        />
+        {kanban.length > 0 ? (
+          kanban.map((kanban) => (
+            <KanbanCard
+              _id={kanban._id}
+              name={kanban.name}
+              content={kanban.content}
+              create_date={kanban.create_date}
+            />
+          ))
+        ) : (
+          <>
+            {loaded && kanban.length === 0 ? (
+              <>
+                <p className={styles.Notes_loaded}>
+                  You'll see your notes here
+                </p>
+              </>
+            ) : (
+              <>
+                <p>Cargando...</p>
+              </>
+            )}
+          </>
+        )}
       </section>
     </main>
   );
