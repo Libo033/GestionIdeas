@@ -16,7 +16,7 @@ const NoteModal: React.FC<INoteModal> = (props) => {
   };
 
   const handleDelete = async (id: string): Promise<void> => {
-    await fetch(`/api/notes/delete/${id}`, { method: "DELETE" });
+    await fetch(`/api/notes/${id}`, { method: "DELETE" });
     location.reload();
   };
 

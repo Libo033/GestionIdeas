@@ -12,7 +12,7 @@ export const handleNewNote = async (
       document.getElementById("note_handler_expire") as HTMLInputElement
     ).value;
 
-    const response = await fetch(`/api/notes/new`, {
+    const response = await fetch(`/api/notes`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -50,7 +50,7 @@ export const handleEditNote = async (
       document.getElementById("note_handler_expire") as HTMLInputElement
     ).value;
 
-    const response = await fetch(`/api/notes/edit/${id}`, {
+    const response = await fetch(`/api/notes/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
