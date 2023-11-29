@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React from "react";
 import styles from "./page.module.css";
-import NoteHandler from "@/components/NoteHandler";
+import NoteHandler from "@/components/notes/NoteHandler";
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 
 const page = () => {

@@ -2,9 +2,9 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
-import Note from "@/components/Note";
+import Note from "@/components/notes/Note";
 import { INote } from "@/libs/interfaces";
-import NotePlaceHolder from "@/components/NotePlaceHolder";
+import NotePlaceHolder from "@/components/notes/NotePlaceHolder";
 
 const Notes = () => {
   const [notes, setNotes] = useState<INote[]>([]);

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../page.module.css";
 import Link from "next/link";
-import KanbanHandler from "@/components/KanbanHandler";
+import KanbanHandler from "@/components/kanban/KanbanHandler";
 
 const New = () => {
   return (

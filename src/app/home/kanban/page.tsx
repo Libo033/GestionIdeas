@@ -3,8 +3,8 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { IKanban } from "@/libs/interfaces";
-import KanbanCard from "@/components/KanbanCard";
-import KanbanCardPlaceholder from "@/components/KanbanCardPlaceholder";
+import KanbanCard from "@/components/kanban/KanbanCard";
+import KanbanCardPlaceholder from "@/components/kanban/KanbanCardPlaceholder";
 
 const Kanban = () => {
   const [kanban, setKanban] = useState<IKanban[]>([]);
