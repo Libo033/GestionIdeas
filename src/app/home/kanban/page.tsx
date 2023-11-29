@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { IKanban } from "@/libs/interfaces";
 import KanbanCard from "@/components/KanbanCard";
+import KanbanCardPlaceholder from "@/components/KanbanCardPlaceholder";
 
 const Kanban = () => {
   const [kanban, setKanban] = useState<IKanban[]>([]);
@@ -59,7 +60,12 @@ const Kanban = () => {
               </>
             ) : (
               <>
-                <p>Cargando...</p>
+                <KanbanCardPlaceholder />
+                <KanbanCardPlaceholder />
+                <KanbanCardPlaceholder />
+                <KanbanCardPlaceholder />
+                <KanbanCardPlaceholder />
+                <KanbanCardPlaceholder />
               </>
             )}
           </>
