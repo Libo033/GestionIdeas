@@ -54,8 +54,8 @@ const Kanban = () => {
           <>
             {loaded && kanban.length === 0 ? (
               <>
-                <p className={styles.Notes_loaded}>
-                  You'll see your notes here
+                <p className={styles.Kanban_loaded}>
+                  You'll see your kanban here
                 </p>
               </>
             ) : (

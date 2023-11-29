@@ -17,3 +17,30 @@
   row-gap: 1rem;
   column-gap: 1rem;
 }
+
+.Kanban_loaded {
+  width: 100%;
+  margin-block: 4.5rem;
+  text-align: center;
+  color: #3283b8;
+  font-size: 30px;
+  font-weight: 300;
+  text-align: center;
+  grid-column: 1 / span 4;
+}
+
+@media (min-width: 300px) and (max-width: 700px) {
+  .Kanban_loaded {
+    margin-block: 1.5rem;
+    font-size: 27px;
+    grid-column: 1 / span 1;
+  }
+}
+
+@media (max-width: 300px) {
+  .Kanban_loaded {
+    margin-block: 1.5rem;
+    font-size: 21px;
+    text-align: left;
+  }
+}
