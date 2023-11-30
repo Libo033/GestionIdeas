@@ -68,12 +68,12 @@ export async function POST(req: Request) {
       content: [],
     };
 
-    const new_note_created = await db
+    const new_kanban_created = await db
       .collection("kanban")
       .insertOne(new_kanban);
 
     return Response.json(
-      { created: new_note_created.acknowledged },
+      { created: new_kanban_created.acknowledged },
       { status: 201 }
     );
   } catch (error) {
