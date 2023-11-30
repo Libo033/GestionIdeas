@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext, useEffect } from "react";
-import Recover from "@/components/Recover";
+import Recover from "@/components/account/Recover";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/context/AuthContext";
 

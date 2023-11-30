@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext, useEffect } from "react";
-import Register from "@/components/Register";
+import Register from "@/components/account/Register";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/context/AuthContext";
 

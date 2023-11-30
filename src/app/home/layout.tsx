@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Titillium_Web } from "next/font/google";
 import "../../app/globals.css";
 import { AuthContextProvider } from "@/context/AuthContext";
-import NavigationBar from "@/components/NavigationBar";
+import NavigationBar from "@/components/navigation/NavigationBar";
 
 const titi = Titillium_Web({
   subsets: ["latin"],

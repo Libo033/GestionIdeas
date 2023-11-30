@@ -1,8 +1,8 @@
 "use client";
 import styles from "./page.module.css";
-import Login from "@/components/Login";
+import Login from "@/components/account/Login";
 import { Divider } from "@mui/material";
-import LoginButtonGroup from "@/components/LoginButtonGroup";
+import LoginButtonGroup from "@/components/account/LoginButtonGroup";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "@/context/AuthContext";
