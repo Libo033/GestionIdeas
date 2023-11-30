@@ -37,9 +37,45 @@ export async function GET() {
   }
 }
 
-export async function POST() {  // CREAR UN KANBAN
+export async function POST(req: Request) {
+  // CREAR UN KANBAN
   try {
-    return Response.json({}, {status: 200});
+    const client: MongoClient = await clientPromise;
+    const mySession: RequestCookie | undefined = cookies().get("mySession");
+    let secret_key: Uint8Array = new TextEncoder().encode(
+      process.env.JWT_SECRET
+    );
+    const data = await req.json();
+
+    if (mySession === undefined) {
+      return Response.json({ Error: "Account doesn't exist" }, { status: 401 });
+    }
+
+    const value: JWTVerifyResult<JWTPayload> = await jwtVerify(
+      mySession.value,
+      secret_key
+    );
+
+    if (typeof value.payload.uid !== "string") {
+      throw new Error();
+    }
+
+    const db: Db = client.db(value.payload.uid);
+
+    const new_kanban = {
+      name: data.name,
+      create_date: new Date().toLocaleString(),
+      content: [],
+    };
+
+    const new_note_created = await db
+      .collection("kanban")
+      .insertOne(new_kanban);
+
+    return Response.json(
+      { created: new_note_created.acknowledged },
+      { status: 201 }
+    );
   } catch (error) {
     if (error instanceof Error) {
       return Response.json({ Error: error.message }, { status: 500 });
