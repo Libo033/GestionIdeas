@@ -1,11 +1,11 @@
 import Link from "next/link";
 import React from "react";
-import styles from "./page.module.css";
+import styles from "../page.module.css";
 import NoteHandler from "@/components/notes/NoteHandler";
 
 const page = () => {
   return (
-    <main className={styles.NewNote}>
+    <main className={styles.Notes}>
       <div className="Dashboard_Breadcrumbs">
         <span>{"/ "}</span>
         <Link href={"/home"}>Home</Link>
