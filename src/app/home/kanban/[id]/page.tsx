@@ -1,12 +1,31 @@
-"use client"
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import styles from "../page.module.css";
 import Link from "next/link";
-import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
+import { IKanban } from "@/libs/interfaces";
 
-const IdKanban = () => {
-  const searchParams: ReadonlyURLSearchParams = useSearchParams();
-  const id: string | null = searchParams.get("id");
+const IdKanban = ({ params }: { params: { id: string } }) => {
+  const [kanban, setKanban] = useState<IKanban>();
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    if (params.id) {
+      fetch(`/api/kanban/${params.id}`, { signal })
+        .then((res) => res.json())
+        .then((data) => {
+          setKanban(data);
+        })
+        .catch((error) => {
+          if (error instanceof Error) {
+            console.log(error.message);
+          }
+        });
+    }
+
+    return () => controller.abort();
+  }, [params.id]);
 
   return (
     <main className={styles.Kanban}>
@@ -16,7 +35,7 @@ const IdKanban = () => {
         <span>{" / "}</span>
         <Link href={"/home/kanban"}>Kanban</Link>
         <span>{" / "}</span>
-        <span>name</span>
+        <span>{kanban?.name}</span>
       </div>
     </main>
   );
