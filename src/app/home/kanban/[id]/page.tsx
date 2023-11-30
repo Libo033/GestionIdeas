@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../page.module.css";
 import Link from "next/link";
 import { IKanban } from "@/libs/interfaces";
+import KanbanBoard from "@/components/kanban/KanbanBoard";
 
 const IdKanban = ({ params }: { params: { id: string } }) => {
   const [kanban, setKanban] = useState<IKanban>();
@@ -37,6 +38,14 @@ const IdKanban = ({ params }: { params: { id: string } }) => {
         <span>{" / "}</span>
         <span>{kanban?.name}</span>
       </div>
+      {kanban && (
+        <>
+          <h1>{kanban.name}</h1>
+          <div className={styles.Kanban_boardContainer}>
+            <KanbanBoard content={kanban.content} />
+          </div>
+        </>
+      )}
     </main>
   );
 };

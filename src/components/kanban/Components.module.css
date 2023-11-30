@@ -101,6 +101,13 @@
 }
 /*#endregion */
 
+/*#region KANBANBOARD */
+.KanbanBoard {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+/*#endregion */
+
 @keyframes placeHolderShimmer {
   0% {
     background-position: -468px 0;
