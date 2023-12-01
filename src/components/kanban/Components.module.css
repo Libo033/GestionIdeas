@@ -147,6 +147,34 @@
 }
 /*#endregion */
 
+/*#region KANBANITEMCLICKEABLE */
+.KanbanItemClickeable {
+  display: flex;
+  flex-direction: column;
+}
+
+.KanbanItemClickeable p {
+  transition: 90ms ease-in-out;
+  padding-inline: 10px;
+  padding-block: 8px;
+  font-size: 16px;
+  text-decoration: underline;
+  display: flex;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.KanbanItemClickeable_button:hover {
+  transition: 90ms ease-in-out;
+  background-color: #62c0bf72;
+}
+
+.KanbanItemClickeable_deleteButton:hover {
+  transition: 90ms ease-in-out;
+  background-color: #ff000081;
+}
+/*#endregion */
+
 @keyframes placeHolderShimmer {
   0% {
     background-position: -468px 0;

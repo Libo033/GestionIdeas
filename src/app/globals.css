@@ -24,3 +24,7 @@
 .Dashboard_Breadcrumbs span {
   cursor: default;
 }
+
+.MuiTooltip-tooltip {
+  padding: 0;
+}

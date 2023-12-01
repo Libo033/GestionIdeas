@@ -15,21 +15,27 @@ const KanbanBoard: React.FC<{ content: IKanbanItem[] }> = (props) => {
         <div className={styles.KanbanBoard_items}>
           {props.content.map((item) => (
             <Fragment key={item._id}>
-              {item.status === "to do" && <KanbanItem text={item.data} />}
+              {item.status === "to do" && (
+                <KanbanItem {...item} />
+              )}
             </Fragment>
           ))}
         </div>
         <div className={styles.KanbanBoard_items}>
           {props.content.map((item) => (
             <Fragment key={item._id}>
-              {item.status === "doing" && <KanbanItem text={item.data} />}
+              {item.status === "doing" && (
+                <KanbanItem {...item} />
+              )}
             </Fragment>
           ))}
         </div>
         <div className={styles.KanbanBoard_items}>
           {props.content.map((item) => (
             <Fragment key={item._id}>
-              {item.status === "done" && <KanbanItem text={item.data} />}
+              {item.status === "done" && (
+                <KanbanItem {...item} />
+              )}
             </Fragment>
           ))}
         </div>
