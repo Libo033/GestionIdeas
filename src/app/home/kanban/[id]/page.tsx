@@ -6,7 +6,7 @@ import { IKanban } from "@/libs/interfaces";
 import KanbanBoard from "@/components/kanban/KanbanBoard";
 
 const IdKanban = ({ params }: { params: { id: string } }) => {
-  const [kanban, setKanban] = useState<IKanban>();
+  const [kanban, setKanban] = useState<IKanban | undefined>();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -41,8 +41,9 @@ const IdKanban = ({ params }: { params: { id: string } }) => {
       {kanban && (
         <>
           <h1>{kanban.name}</h1>
+          <Link href={"/home/kanban"}>Create item</Link>
           <div className={styles.Kanban_boardContainer}>
-            <KanbanBoard content={kanban.content} />
+            <KanbanBoard kanban={kanban} setKanban={setKanban} />
           </div>
         </>
       )}

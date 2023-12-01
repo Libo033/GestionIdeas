@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 import styles from "./Components.module.css";
-import { IKanbanItem } from "@/libs/interfaces";
+import { IKanbanBoard } from "@/libs/interfaces";
 import KanbanItem from "./KanbanItem";
 
-const KanbanBoard: React.FC<{ content: IKanbanItem[] }> = (props) => {
+const KanbanBoard: React.FC<IKanbanBoard> = (props) => {
   return (
     <div className={styles.KanbanBoard}>
       <div className={styles.KanbanBoard_head}>
@@ -13,7 +13,7 @@ const KanbanBoard: React.FC<{ content: IKanbanItem[] }> = (props) => {
       </div>
       <div className={styles.KanbanBoard_itemsContainer}>
         <div className={styles.KanbanBoard_items}>
-          {props.content.map((item) => (
+          {props.kanban.content.map((item) => (
             <Fragment key={item._id}>
               {item.status === "to do" && (
                 <KanbanItem {...item} />
@@ -22,7 +22,7 @@ const KanbanBoard: React.FC<{ content: IKanbanItem[] }> = (props) => {
           ))}
         </div>
         <div className={styles.KanbanBoard_items}>
-          {props.content.map((item) => (
+          {props.kanban.content.map((item) => (
             <Fragment key={item._id}>
               {item.status === "doing" && (
                 <KanbanItem {...item} />
@@ -31,7 +31,7 @@ const KanbanBoard: React.FC<{ content: IKanbanItem[] }> = (props) => {
           ))}
         </div>
         <div className={styles.KanbanBoard_items}>
-          {props.content.map((item) => (
+          {props.kanban.content.map((item) => (
             <Fragment key={item._id}>
               {item.status === "done" && (
                 <KanbanItem {...item} />

@@ -1,5 +1,5 @@
 import { User } from "firebase/auth";
-import React from "react";
+import React, { SetStateAction } from "react";
 
 export interface IAuthContext {
   user: User | null;
@@ -40,6 +40,11 @@ export interface IKanban {
   create_date: string;
 }
 
+export interface IKanbanBoard {
+  kanban: IKanban;
+  setKanban: React.Dispatch<SetStateAction<IKanban | undefined>>
+}
+
 export interface IKanbanItem {
   _id: string;
   data: string;
@@ -48,4 +53,14 @@ export interface IKanbanItem {
 
 export interface IKanbanHandler {
   id: string | undefined;
+}
+
+export interface IKanbanBoardContext {
+  kanban: undefined | IKanban;
+  getKanban: Function | null;
+  handleMoveNext: Function | null;
+  handleMoveBack: Function | null;
+  handleNewItem: Function | null;
+  handleEditItem: Function | null;
+  handleDeleteItem: Function | null;
 }

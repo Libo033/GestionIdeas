@@ -3,6 +3,7 @@ import { Titillium_Web } from "next/font/google";
 import "../../app/globals.css";
 import { AuthContextProvider } from "@/context/AuthContext";
 import NavigationBar from "@/components/navigation/NavigationBar";
+import { KanbanBoardContextProvider } from "@/context/KanbanBoardContext";
 
 const titi = Titillium_Web({
   subsets: ["latin"],
@@ -22,10 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthContextProvider>
-        <body className={titi.className}>
-          <NavigationBar />
-          {children}
-        </body>
+        <KanbanBoardContextProvider>
+          <body className={titi.className}>
+            <NavigationBar />
+            {children}
+          </body>
+        </KanbanBoardContextProvider>
       </AuthContextProvider>
     </html>
   );
