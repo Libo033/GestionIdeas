@@ -42,7 +42,7 @@ export interface IKanban {
 
 export interface IKanbanBoard {
   kanban: IKanban;
-  setKanban: React.Dispatch<SetStateAction<IKanban | undefined>>
+  setKanban: React.Dispatch<SetStateAction<IKanban | undefined>>;
 }
 
 export interface IKanbanItem {
@@ -56,11 +56,13 @@ export interface IKanbanHandler {
 }
 
 export interface IKanbanBoardContext {
-  kanban: undefined | IKanban;
-  getKanban: Function | null;
   handleMoveNext: Function | null;
   handleMoveBack: Function | null;
-  handleNewItem: Function | null;
-  handleEditItem: Function | null;
   handleDeleteItem: Function | null;
+}
+
+export interface IHandleMoveItem {
+  idKanban: string;
+  idItem: string;
+  setKanban: React.Dispatch<React.SetStateAction<IKanban | undefined>>;
 }
