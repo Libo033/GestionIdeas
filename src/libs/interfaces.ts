@@ -56,13 +56,19 @@ export interface IKanbanHandler {
 }
 
 export interface IKanbanBoardContext {
+  kanban: IKanban[];
+  loaded: boolean;
   handleMoveNext: Function | null;
   handleMoveBack: Function | null;
   handleDeleteItem: Function | null;
 }
 
 export interface IHandleMoveItem {
-  idKanban: string;
   idItem: string;
-  setKanban: React.Dispatch<React.SetStateAction<IKanban | undefined>>;
+  setKanban: React.Dispatch<React.SetStateAction<IKanban[]>>;
+}
+
+export interface IKanbanItemComponent {
+  item: IKanbanItem,
+  idKanban: string;
 }

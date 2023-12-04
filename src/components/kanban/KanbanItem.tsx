@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./Components.module.css";
 import { Tooltip } from "@mui/material";
 import Image from "next/image";
-import { IKanbanItem } from "@/libs/interfaces";
+import { IKanbanItemComponent } from "@/libs/interfaces";
+import { KanbanBoardContext } from "@/context/KanbanBoardContext";
 
 const KanbanItemClickeable = (
-  id: string,
-  status: "to do" | "doing" | "done"
+  idItem: string,
+  status: "to do" | "doing" | "done",
+  idKanban: string
 ) => {
+  const { handleMoveBack, handleMoveNext, handleDeleteItem } =
+    useContext(KanbanBoardContext);
+
+  const callHandlerDel = () => {
+    if (handleDeleteItem) {
+      handleDeleteItem(idKanban, idItem);
+    }
+  };
+
   return (
     <div className={styles.KanbanItemClickeable}>
-      {status === "to do" && (
+      {handleMoveNext && status === "to do" && (
         <p className={styles.KanbanItemClickeable_button}>
           <Image
             src={"/img/right_arrow.svg"}
@@ -21,7 +32,7 @@ const KanbanItemClickeable = (
           NEXT
         </p>
       )}
-      {status === "doing" && (
+      {handleMoveBack && handleMoveNext && status === "doing" && (
         <>
           <p className={styles.KanbanItemClickeable_button}>
             <Image
@@ -43,7 +54,7 @@ const KanbanItemClickeable = (
           </p>
         </>
       )}
-      {status === "done" && (
+      {handleMoveBack && status === "done" && (
         <p className={styles.KanbanItemClickeable_button}>
           <Image
             src={"/img/left_arrow.svg"}
@@ -58,7 +69,10 @@ const KanbanItemClickeable = (
         <Image src={"/img/edit.svg"} alt="edit" width={18} height={18} />
         EDIT
       </p>
-      <p className={styles.KanbanItemClickeable_deleteButton}>
+      <p
+        onClick={() => callHandlerDel()}
+        className={styles.KanbanItemClickeable_deleteButton}
+      >
         <Image src={"/img/delete.svg"} alt="thrash" width={18} height={18} />
         DELETE
       </p>
@@ -66,11 +80,14 @@ const KanbanItemClickeable = (
   );
 };
 
-const KanbanItem: React.FC<IKanbanItem> = (props) => {
+const KanbanItem: React.FC<IKanbanItemComponent> = ({ item, idKanban }) => {
   return (
-    <Tooltip title={KanbanItemClickeable(props._id, props.status)} arrow>
+    <Tooltip
+      title={KanbanItemClickeable(item._id, item.status, idKanban)}
+      arrow
+    >
       <div className={styles.KanbanItem}>
-        <p>{props.data}</p>
+        <p>{item.data}</p>
       </div>
     </Tooltip>
   );

@@ -16,7 +16,7 @@ const KanbanBoard: React.FC<IKanbanBoard> = (props) => {
           {props.kanban.content.map((item) => (
             <Fragment key={item._id}>
               {item.status === "to do" && (
-                <KanbanItem {...item} />
+                <KanbanItem item={item} idKanban={props.kanban._id} />
               )}
             </Fragment>
           ))}
@@ -25,7 +25,7 @@ const KanbanBoard: React.FC<IKanbanBoard> = (props) => {
           {props.kanban.content.map((item) => (
             <Fragment key={item._id}>
               {item.status === "doing" && (
-                <KanbanItem {...item} />
+                <KanbanItem item={item} idKanban={props.kanban._id} />
               )}
             </Fragment>
           ))}
@@ -34,7 +34,7 @@ const KanbanBoard: React.FC<IKanbanBoard> = (props) => {
           {props.kanban.content.map((item) => (
             <Fragment key={item._id}>
               {item.status === "done" && (
-                <KanbanItem {...item} />
+                <KanbanItem item={item} idKanban={props.kanban._id} />
               )}
             </Fragment>
           ))}

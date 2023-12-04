@@ -1,34 +1,13 @@
 "use client";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import styles from "./page.module.css";
-import { IKanban } from "@/libs/interfaces";
 import KanbanCard from "@/components/kanban/KanbanCard";
 import KanbanCardPlaceholder from "@/components/kanban/KanbanCardPlaceholder";
+import { KanbanBoardContext } from "@/context/KanbanBoardContext";
 
 const Kanban = () => {
-  const [kanban, setKanban] = useState<IKanban[]>([]);
-  const [loaded, setLoaded] = useState<boolean>(false);
-
-  useEffect(() => {
-    const controller = new AbortController();
-    const { signal } = controller;
-
-    fetch(`/api/kanban`, { signal })
-      .then((res) => res.json())
-      .then((data) => {
-        setKanban(data);
-      })
-      .catch((error) => {
-        if (error instanceof Error) {
-          console.log(error.message);
-        }
-      });
-
-    setLoaded(true);
-
-    return () => controller.abort();
-  }, []);
+  const { kanban, loaded } = useContext(KanbanBoardContext);
 
   return (
     <main className={styles.Kanban}>
@@ -44,6 +23,7 @@ const Kanban = () => {
         {kanban.length > 0 ? (
           kanban.map((kanban) => (
             <KanbanCard
+              key={kanban._id}
               _id={kanban._id}
               name={kanban.name}
               content={kanban.content}
