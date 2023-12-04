@@ -13,16 +13,13 @@ const KanbanItemClickeable = (
   const { handleMoveBack, handleMoveNext, handleDeleteItem } =
     useContext(KanbanBoardContext);
 
-  const callHandlerDel = () => {
-    if (handleDeleteItem) {
-      handleDeleteItem(idKanban, idItem);
-    }
-  };
-
   return (
     <div className={styles.KanbanItemClickeable}>
       {handleMoveNext && status === "to do" && (
-        <p className={styles.KanbanItemClickeable_button}>
+        <p
+          onClick={() => handleMoveNext(idKanban, idItem)}
+          className={styles.KanbanItemClickeable_button}
+        >
           <Image
             src={"/img/right_arrow.svg"}
             alt="edit"
@@ -34,7 +31,10 @@ const KanbanItemClickeable = (
       )}
       {handleMoveBack && handleMoveNext && status === "doing" && (
         <>
-          <p className={styles.KanbanItemClickeable_button}>
+          <p
+            onClick={() => handleMoveBack(idKanban, idItem)}
+            className={styles.KanbanItemClickeable_button}
+          >
             <Image
               src={"/img/left_arrow.svg"}
               alt="edit"
@@ -43,7 +43,10 @@ const KanbanItemClickeable = (
             />
             BACK
           </p>
-          <p className={styles.KanbanItemClickeable_button}>
+          <p
+            onClick={() => handleMoveNext(idKanban, idItem)}
+            className={styles.KanbanItemClickeable_button}
+          >
             <Image
               src={"/img/right_arrow.svg"}
               alt="edit"
@@ -55,7 +58,10 @@ const KanbanItemClickeable = (
         </>
       )}
       {handleMoveBack && status === "done" && (
-        <p className={styles.KanbanItemClickeable_button}>
+        <p
+          onClick={() => handleMoveBack(idKanban, idItem)}
+          className={styles.KanbanItemClickeable_button}
+        >
           <Image
             src={"/img/left_arrow.svg"}
             alt="edit"
@@ -69,13 +75,15 @@ const KanbanItemClickeable = (
         <Image src={"/img/edit.svg"} alt="edit" width={18} height={18} />
         EDIT
       </p>
-      <p
-        onClick={() => callHandlerDel()}
-        className={styles.KanbanItemClickeable_deleteButton}
-      >
-        <Image src={"/img/delete.svg"} alt="thrash" width={18} height={18} />
-        DELETE
-      </p>
+      {handleDeleteItem && (
+        <p
+          onClick={() => handleDeleteItem(idKanban, idItem)}
+          className={styles.KanbanItemClickeable_deleteButton}
+        >
+          <Image src={"/img/delete.svg"} alt="thrash" width={18} height={18} />
+          DELETE
+        </p>
+      )}
     </div>
   );
 };

@@ -63,11 +63,6 @@ export interface IKanbanBoardContext {
   handleDeleteItem: Function | null;
 }
 
-export interface IHandleMoveItem {
-  idItem: string;
-  setKanban: React.Dispatch<React.SetStateAction<IKanban[]>>;
-}
-
 export interface IKanbanItemComponent {
   item: IKanbanItem,
   idKanban: string;

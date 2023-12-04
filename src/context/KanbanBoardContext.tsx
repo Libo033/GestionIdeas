@@ -1,9 +1,5 @@
 "use client";
-import {
-  IHandleMoveItem,
-  IKanban,
-  IKanbanBoardContext,
-} from "@/libs/interfaces";
+import { IKanban, IKanbanBoardContext } from "@/libs/interfaces";
 import React, { createContext, useEffect, useState } from "react";
 
 const kanban_init: IKanban[] = [
@@ -47,13 +43,17 @@ export const KanbanBoardContextProvider: React.FC<{
     return () => controller.abort();
   }, []);
 
-  const handleMoveBack = (props: IHandleMoveItem): void => {
+  const handleMoveBack = (idKanban: string, idItem: string): void => {
     // PRIMERO MOVER EN EL USESTATE EL ITEM
+    console.log(idKanban);
+    console.log(idItem);
     // SEGUNDO MOVERLO DE LA DB CON LA API
   };
 
-  const handleMoveNext = (props: IHandleMoveItem): void => {
+  const handleMoveNext = (idKanban: string, idItem: string): void => {
     // PRIMERO MOVER EN EL USESTATE EL ITEM
+    console.log(idKanban);
+    console.log(idItem);
     // SEGUNDO MOVERLO DE LA DB CON LA API
   };
 
