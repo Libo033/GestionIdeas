@@ -1,0 +1,42 @@
+/*#region ITEMSHANDLER */
+.ItemsHandler {
+  width: 100%;
+  height: fit-content;
+  margin-top: 1rem;
+}
+
+.ItemsHandler_form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 3rem;
+  padding-block: 1rem;
+}
+
+.ItemsHandler_textField {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ItemsHandler_submit {
+  transition: 120ms ease-in-out 0s;
+  width: 30%;
+  background-color: #1b262c;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  padding-block: 9px;
+  border: none;
+  border-radius: 6px;
+}
+
+.ItemsHandler_submit:hover {
+  transition: 120ms ease-in-out 0s;
+  background-color: #3283b8;
+  border-radius: 18px;
+}
+/*#endregion */
