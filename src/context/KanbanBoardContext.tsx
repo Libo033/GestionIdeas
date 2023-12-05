@@ -99,8 +99,14 @@ export const KanbanBoardContextProvider: React.FC<{
 
   const handleDeleteItem = (idKanban: string, idItem: string) => {
     // PRIMERO ELIMINAR DEL USESTATE EL ITEM
-    console.log(idKanban);
-    console.log(idItem);
+    let kanbanToMod = kanban.find((k) => k._id === idKanban);
+    let kanbanWithout = kanban.filter((k) => k._id !== idKanban);
+
+    if (kanbanToMod) {
+      kanbanToMod.content = kanbanToMod.content.filter((k) => k._id !== idItem);
+
+      setKanban([...kanbanWithout, kanbanToMod]);
+    }
     // SEGUNDO ELIMINARLO DE LA DB CON LA API
   };
 
