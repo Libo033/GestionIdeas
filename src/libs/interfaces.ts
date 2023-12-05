@@ -64,6 +64,11 @@ export interface IKanbanBoardContext {
 }
 
 export interface IKanbanItemComponent {
-  item: IKanbanItem,
+  item: IKanbanItem;
   idKanban: string;
+}
+
+export interface IItemsHandler {
+  idKanban: string | null;
+  idItem: string | null;
 }

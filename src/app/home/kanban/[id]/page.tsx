@@ -29,7 +29,9 @@ const IdKanban = ({ params }: { params: { id: string } }) => {
       {kanban && (
         <>
           <h1>{kanban.name}</h1>
-          <Link href={"/home/kanban"}>Create item</Link>
+          <Link href={`/home/kanban/items?kanban=${params.id}`}>
+            Create item
+          </Link>
           <div className={styles.Kanban_boardContainer}>
             <KanbanBoard kanban={kanban} setKanban={setKanban} />
           </div>
