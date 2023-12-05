@@ -38,3 +38,87 @@ export async function POST(req: Request) {
     }
   }
 }
+
+export async function PATCH(req: Request) {
+  try {
+    const client: MongoClient = await clientPromise;
+    const mySession: RequestCookie | undefined = cookies().get("mySession");
+    let secret_key: Uint8Array = new TextEncoder().encode(
+      process.env.JWT_SECRET
+    );
+    const data = await req.json();
+
+    if (mySession === undefined) {
+      return Response.json({ Error: "Account doesn't exist" }, { status: 401 });
+    }
+
+    const value: JWTVerifyResult<JWTPayload> = await jwtVerify(
+      mySession.value,
+      secret_key
+    );
+
+    if (typeof value.payload.uid !== "string") {
+      throw new Error();
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      return Response.json({ Error: error.message }, { status: 500 });
+    }
+  }
+}
+
+export async function PUT(req: Request) {
+  try {
+    const client: MongoClient = await clientPromise;
+    const mySession: RequestCookie | undefined = cookies().get("mySession");
+    let secret_key: Uint8Array = new TextEncoder().encode(
+      process.env.JWT_SECRET
+    );
+    const data = await req.json();
+
+    if (mySession === undefined) {
+      return Response.json({ Error: "Account doesn't exist" }, { status: 401 });
+    }
+
+    const value: JWTVerifyResult<JWTPayload> = await jwtVerify(
+      mySession.value,
+      secret_key
+    );
+
+    if (typeof value.payload.uid !== "string") {
+      throw new Error();
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      return Response.json({ Error: error.message }, { status: 500 });
+    }
+  }
+}
+
+export async function DELETE(req: Request) {
+  try {
+    const client: MongoClient = await clientPromise;
+    const mySession: RequestCookie | undefined = cookies().get("mySession");
+    let secret_key: Uint8Array = new TextEncoder().encode(
+      process.env.JWT_SECRET
+    );
+    const data = await req.json();
+
+    if (mySession === undefined) {
+      return Response.json({ Error: "Account doesn't exist" }, { status: 401 });
+    }
+
+    const value: JWTVerifyResult<JWTPayload> = await jwtVerify(
+      mySession.value,
+      secret_key
+    );
+
+    if (typeof value.payload.uid !== "string") {
+      throw new Error();
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      return Response.json({ Error: error.message }, { status: 500 });
+    }
+  }
+}
