@@ -1,32 +1,20 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "../page.module.css";
 import Link from "next/link";
 import { IKanban } from "@/libs/interfaces";
 import KanbanBoard from "@/components/kanban/KanbanBoard";
+import { KanbanBoardContext } from "@/context/KanbanBoardContext";
 
 const IdKanban = ({ params }: { params: { id: string } }) => {
   const [kanban, setKanban] = useState<IKanban | undefined>();
+  const { kanban: kanbanContext } = useContext(KanbanBoardContext);
 
   useEffect(() => {
-    const controller = new AbortController();
-    const { signal } = controller;
-
-    if (params.id) {
-      fetch(`/api/kanban/${params.id}`, { signal })
-        .then((res) => res.json())
-        .then((data) => {
-          setKanban(data);
-        })
-        .catch((error) => {
-          if (error instanceof Error) {
-            console.log(error.message);
-          }
-        });
+    if (params.id && kanbanContext) {
+      setKanban(kanbanContext.find((k) => k._id === params.id));
     }
-
-    return () => controller.abort();
-  }, [params.id]);
+  }, [params.id, kanbanContext]);
 
   return (
     <main className={styles.Kanban}>

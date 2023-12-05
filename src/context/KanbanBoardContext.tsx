@@ -45,15 +45,55 @@ export const KanbanBoardContextProvider: React.FC<{
 
   const handleMoveBack = (idKanban: string, idItem: string): void => {
     // PRIMERO MOVER EN EL USESTATE EL ITEM
-    console.log(idKanban);
-    console.log(idItem);
+    let kanbanToMod = kanban.find((k) => k._id === idKanban);
+    let kanbanWithout = kanban.filter((k) => k._id !== idKanban);
+
+    if (kanbanToMod) {
+      kanbanToMod.content.forEach((k) => {
+        if (k._id === idItem) {
+          switch (k.status) {
+            case "doing":
+              k.status = "to do";
+              break;
+            case "done":
+              k.status = "doing";
+              break;
+            default:
+              console.log("Algo salio mal: " + k.status);
+              break;
+          }
+        }
+      });
+
+      setKanban([...kanbanWithout, kanbanToMod]);
+    }
     // SEGUNDO MOVERLO DE LA DB CON LA API
   };
 
   const handleMoveNext = (idKanban: string, idItem: string): void => {
     // PRIMERO MOVER EN EL USESTATE EL ITEM
-    console.log(idKanban);
-    console.log(idItem);
+    let kanbanToMod = kanban.find((k) => k._id === idKanban);
+    let kanbanWithout = kanban.filter((k) => k._id !== idKanban);
+
+    if (kanbanToMod) {
+      kanbanToMod.content.forEach((k) => {
+        if (k._id === idItem) {
+          switch (k.status) {
+            case "to do":
+              k.status = "doing";
+              break;
+            case "doing":
+              k.status = "done";
+              break;
+            default:
+              console.log("Algo salio mal: " + k.status);
+              break;
+          }
+        }
+      });
+
+      setKanban([...kanbanWithout, kanbanToMod]);
+    }
     // SEGUNDO MOVERLO DE LA DB CON LA API
   };
 
