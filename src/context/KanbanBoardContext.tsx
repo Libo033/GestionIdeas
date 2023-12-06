@@ -109,7 +109,7 @@ export const KanbanBoardContextProvider: React.FC<{
     }
   };
 
-  const handleDeleteItem = (idKanban: string, idItem: string) => {
+  const handleDeleteItem = async (idKanban: string, idItem: string) => {
     try {
       // PRIMERO ELIMINAR DEL USESTATE EL ITEM
       let kanbanToMod = kanban.find((k) => k._id === idKanban);
@@ -124,9 +124,12 @@ export const KanbanBoardContextProvider: React.FC<{
         setKanban([...kanbanWithout, kanbanToMod]);
       }
       // SEGUNDO ELIMINARLO DE LA DB CON LA API
+      await fetch(`/api/kanban/items?kanban=${idKanban}&item=${idItem}`, {
+        method: "DELETE",
+      });
     } catch (error) {
       if (error instanceof Error) {
-        console.log(error.message);
+        console.log("KanbanBoardContext: " + error.message);
       }
     }
   };

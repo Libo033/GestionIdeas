@@ -86,18 +86,3 @@ export const handleEditItem = async (
     }
   }
 };
-
-export const handleDeleteItem = async (
-  idKanban: string,
-  idItem: string
-): Promise<void> => {
-  try {
-    await fetch(`/api/kanban/items?kanban=${idKanban}&item=${idItem}`, {
-      method: "DELETE",
-    });
-  } catch (error) {
-    if (error instanceof Error) {
-      console.log(error.message);
-    }
-  }
-};

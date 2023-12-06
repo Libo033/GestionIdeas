@@ -1,8 +1,10 @@
 import clientPromise from "@/libs/mongodb";
-import { Db, MongoClient, ObjectId } from "mongodb";
+import { Db, MongoClient, ObjectId, WithId } from "mongodb";
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { cookies } from "next/headers";
 import { JWTPayload, JWTVerifyResult, jwtVerify } from "jose";
+import { IKanban, IKanbanItem } from "@/libs/interfaces";
+import Document from "next/document";
 
 export async function POST(req: Request) {
   try {
@@ -99,10 +101,13 @@ export async function DELETE(req: Request) {
   try {
     const client: MongoClient = await clientPromise;
     const mySession: RequestCookie | undefined = cookies().get("mySession");
+    const { searchParams } = new URL(req.url);
+    const idKanban = searchParams.get("kanban");
+    const idItem = searchParams.get("item");
+
     let secret_key: Uint8Array = new TextEncoder().encode(
       process.env.JWT_SECRET
     );
-    const data = await req.json();
 
     if (mySession === undefined) {
       return Response.json({ Error: "Account doesn't exist" }, { status: 401 });
@@ -113,8 +118,34 @@ export async function DELETE(req: Request) {
       secret_key
     );
 
-    if (typeof value.payload.uid !== "string") {
-      throw new Error();
+    if (typeof value.payload.uid !== "string") throw new Error();
+
+    const db: Db = client.db(value.payload.uid);
+
+    if (idKanban && idItem) {
+      const kanban = await db
+        .collection("kanban")
+        .findOne({ _id: new ObjectId(idKanban) });
+
+      if (!kanban) throw new Error();
+
+      let kanban_obj: IKanban = JSON.parse(JSON.stringify(kanban));
+
+      await db.collection("kanban").findOneAndUpdate(
+        { _id: new ObjectId(idKanban) },
+        {
+          $set: {
+            content: kanban_obj.content.filter((k) => k._id !== idItem),
+          },
+        }
+      );
+
+      return Response.json({ Delete: "successfully" }, { status: 200 });
+    } else {
+      return Response.json(
+        { Error: "Params cannot be undefined" },
+        { status: 401 }
+      );
     }
   } catch (error) {
     if (error instanceof Error) {
