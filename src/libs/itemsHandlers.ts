@@ -4,11 +4,12 @@ import { FormEvent } from "react";
 export const handleCreateItem = async (
   Event: FormEvent,
   router: AppRouterInstance,
-  idKanban: string,
-  item: string
+  idKanban: string
 ) => {
   try {
     Event.preventDefault();
+
+    let item = (document.getElementById("item_handler_text") as HTMLInputElement).value;
 
     const response = await fetch(`/api/kanban/items`, {
       method: "POST",
@@ -21,9 +22,13 @@ export const handleCreateItem = async (
 
     const result: Response = await response.json();
 
+    console.log(result);
+
     if (result) {
       router.push(`/home/kanban/${idKanban}`);
     }
+
+    return result;
   } catch (error) {
     if (error instanceof Error) {
       console.log(error.message);

@@ -1,10 +1,9 @@
 import clientPromise from "@/libs/mongodb";
-import { Db, MongoClient, ObjectId, WithId } from "mongodb";
+import { Db, MongoClient, ObjectId } from "mongodb";
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { cookies } from "next/headers";
 import { JWTPayload, JWTVerifyResult, jwtVerify } from "jose";
 import { IKanban, IKanbanItem } from "@/libs/interfaces";
-import Document from "next/document";
 
 export async function POST(req: Request) {
   try {
@@ -14,9 +13,14 @@ export async function POST(req: Request) {
       process.env.JWT_SECRET
     );
     const data = await req.json();
+    const idKanban: string | undefined = data.idKanban;
+    const item: string | undefined = data.item;
 
     if (mySession === undefined) {
-      return Response.json({ Error: "Account doesn't exist" }, { status: 401 });
+      return Response.json(
+        { Error: "Account doesn't exist", status: 401 },
+        { status: 401 }
+      );
     }
 
     const value: JWTVerifyResult<JWTPayload> = await jwtVerify(
@@ -29,14 +33,43 @@ export async function POST(req: Request) {
     }
 
     const db: Db = client.db(value.payload.uid);
+
     const kanban = await db
       .collection("kanban")
-      .findOne({ _id: new ObjectId(data._id) });
+      .findOne({ _id: new ObjectId(idKanban) });
 
-    return Response.json({}, { status: 201 });
+    if (kanban && item) {
+      let kanban_obj: IKanban = JSON.parse(JSON.stringify(kanban));
+      let item_to_add: IKanbanItem = {
+        _id: new ObjectId().toString(),
+        data: item,
+        status: "to do",
+      };
+      let content_to_update = kanban_obj.content;
+      content_to_update.push(item_to_add);
+
+      await db.collection("kanban").findOneAndUpdate(
+        { _id: new ObjectId(idKanban) },
+        {
+          $set: {
+            content: content_to_update,
+          },
+        }
+      );
+
+      return Response.json(
+        { Item: item_to_add, kanban: idKanban, status: 201 },
+        { status: 201 }
+      );
+    } else {
+      throw new Error("Something went wrong with the kanban ID");
+    }
   } catch (error) {
     if (error instanceof Error) {
-      return Response.json({ Error: error.message }, { status: 500 });
+      return Response.json(
+        { Error: error.message, status: 500 },
+        { status: 500 }
+      );
     }
   }
 }
