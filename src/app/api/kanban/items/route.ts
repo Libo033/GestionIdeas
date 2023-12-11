@@ -86,7 +86,6 @@ export async function PATCH(req: Request) {
       idItem: string;
       moveTo: "to do" | "doing" | "done";
     } = await req.json();
-    console.log(data);
 
     if (mySession === undefined) {
       return Response.json(

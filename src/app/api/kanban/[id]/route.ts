@@ -18,7 +18,10 @@ export async function GET(
     );
 
     if (mySession === undefined) {
-      return Response.json({ Error: "Account doesn't exist" }, { status: 401 });
+      return Response.json(
+        { Error: "Account doesn't exist", status: 401 },
+        { status: 401 }
+      );
     }
 
     const value: JWTVerifyResult<JWTPayload> = await jwtVerify(
@@ -39,7 +42,10 @@ export async function GET(
     return Response.json(kanban[0], { status: 200 });
   } catch (error) {
     if (error instanceof Error) {
-      return Response.json({ Error: error.message }, { status: 500 });
+      return Response.json(
+        { Error: error.message, status: 500 },
+        { status: 500 }
+      );
     }
   }
 }

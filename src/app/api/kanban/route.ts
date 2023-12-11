@@ -14,7 +14,10 @@ export async function GET() {
     );
 
     if (mySession === undefined) {
-      return Response.json({ Error: "Account doesn't exist" }, { status: 401 });
+      return Response.json(
+        { Error: "Account doesn't exist", status: 401 },
+        { status: 401 }
+      );
     }
 
     const value: JWTVerifyResult<JWTPayload> = await jwtVerify(
@@ -32,7 +35,10 @@ export async function GET() {
     return Response.json(kanban, { status: 200 });
   } catch (error) {
     if (error instanceof Error) {
-      return Response.json({ Error: error.message }, { status: 500 });
+      return Response.json(
+        { Error: error.message, status: 500 },
+        { status: 500 }
+      );
     }
   }
 }
@@ -48,7 +54,10 @@ export async function POST(req: Request) {
     const data = await req.json();
 
     if (mySession === undefined) {
-      return Response.json({ Error: "Account doesn't exist" }, { status: 401 });
+      return Response.json(
+        { Error: "Account doesn't exist", status: 401 },
+        { status: 401 }
+      );
     }
 
     const value: JWTVerifyResult<JWTPayload> = await jwtVerify(
@@ -73,29 +82,15 @@ export async function POST(req: Request) {
       .insertOne(new_kanban);
 
     return Response.json(
-      { created: new_kanban_created.acknowledged },
+      { created: new_kanban_created.acknowledged, status: 201 },
       { status: 201 }
     );
   } catch (error) {
     if (error instanceof Error) {
-      return Response.json({ Error: error.message }, { status: 500 });
+      return Response.json(
+        { Error: error.message, status: 500 },
+        { status: 500 }
+      );
     }
   }
 }
-
-/*  ESTRUCTURA DEL KANBAN
-{
-  "_id": { "$oid": "65677fd6c0593a185047eb43" },
-  "name": "IDEARIO",
-  "create_date": "27/11/2023, 16:37",
-  "content": [
-    {
-      "data": "Acomodar toda la API.",
-      "status": "to do",
-      "_id": {
-        "$oid": "656780d0cc11907c6d2d0ba1"
-      }
-    }
-  ]
-}
-*/
