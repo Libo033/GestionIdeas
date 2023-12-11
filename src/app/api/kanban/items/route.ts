@@ -81,10 +81,18 @@ export async function PATCH(req: Request) {
     let secret_key: Uint8Array = new TextEncoder().encode(
       process.env.JWT_SECRET
     );
-    const data = await req.json();
+    const data: {
+      idKanban: string;
+      idItem: string;
+      moveTo: "to do" | "doing" | "done";
+    } = await req.json();
+    console.log(data);
 
     if (mySession === undefined) {
-      return Response.json({ Error: "Account doesn't exist" }, { status: 401 });
+      return Response.json(
+        { Error: "Account doesn't exist", status: 401 },
+        { status: 401 }
+      );
     }
 
     const value: JWTVerifyResult<JWTPayload> = await jwtVerify(
@@ -92,40 +100,45 @@ export async function PATCH(req: Request) {
       secret_key
     );
 
-    if (typeof value.payload.uid !== "string") {
-      throw new Error();
+    if (typeof value.payload.uid !== "string") throw new Error();
+
+    const db: Db = client.db(value.payload.uid);
+
+    if (data.idItem && data.idKanban) {
+      let kanban = await db
+        .collection("kanban")
+        .findOne({ _id: new ObjectId(data.idKanban) });
+      let kanbanToMove: IKanban = JSON.parse(JSON.stringify(kanban));
+
+      kanbanToMove.content.forEach((item) => {
+        if (item._id === data.idItem) item.status = data.moveTo;
+      });
+
+      await db.collection("kanban").findOneAndUpdate(
+        { _id: new ObjectId(data.idKanban) },
+        {
+          $set: {
+            content: kanbanToMove.content,
+          },
+        }
+      );
+
+      return Response.json(
+        { ItemMoved: "successfully", status: 200 },
+        { status: 200 }
+      );
+    } else {
+      return Response.json(
+        { Error: "Params cannot be undefined", status: 401 },
+        { status: 401 }
+      );
     }
   } catch (error) {
     if (error instanceof Error) {
-      return Response.json({ Error: error.message }, { status: 500 });
-    }
-  }
-}
-
-export async function PUT(req: Request) {
-  try {
-    const client: MongoClient = await clientPromise;
-    const mySession: RequestCookie | undefined = cookies().get("mySession");
-    let secret_key: Uint8Array = new TextEncoder().encode(
-      process.env.JWT_SECRET
-    );
-    const data = await req.json();
-
-    if (mySession === undefined) {
-      return Response.json({ Error: "Account doesn't exist" }, { status: 401 });
-    }
-
-    const value: JWTVerifyResult<JWTPayload> = await jwtVerify(
-      mySession.value,
-      secret_key
-    );
-
-    if (typeof value.payload.uid !== "string") {
-      throw new Error();
-    }
-  } catch (error) {
-    if (error instanceof Error) {
-      return Response.json({ Error: error.message }, { status: 500 });
+      return Response.json(
+        { Error: error.message, status: 500 },
+        { status: 500 }
+      );
     }
   }
 }
@@ -143,7 +156,10 @@ export async function DELETE(req: Request) {
     );
 
     if (mySession === undefined) {
-      return Response.json({ Error: "Account doesn't exist" }, { status: 401 });
+      return Response.json(
+        { Error: "Account doesn't exist", status: 401 },
+        { status: 401 }
+      );
     }
 
     const value: JWTVerifyResult<JWTPayload> = await jwtVerify(
@@ -173,16 +189,22 @@ export async function DELETE(req: Request) {
         }
       );
 
-      return Response.json({ Delete: "successfully" }, { status: 200 });
+      return Response.json(
+        { Delete: "successfully", status: 200 },
+        { status: 200 }
+      );
     } else {
       return Response.json(
-        { Error: "Params cannot be undefined" },
+        { Error: "Params cannot be undefined", status: 401 },
         { status: 401 }
       );
     }
   } catch (error) {
     if (error instanceof Error) {
-      return Response.json({ Error: error.message }, { status: 500 });
+      return Response.json(
+        { Error: error.message, status: 500 },
+        { status: 500 }
+      );
     }
   }
 }

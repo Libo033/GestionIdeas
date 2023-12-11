@@ -1,5 +1,6 @@
 "use client";
 import { IKanban, IKanbanBoardContext, IKanbanItem } from "@/libs/interfaces";
+import { handleMoveItemTo } from "@/libs/itemsHandlers";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import React, { FormEvent, createContext, useEffect, useState } from "react";
 
@@ -60,10 +61,7 @@ export const KanbanBoardContextProvider: React.FC<{
       const response = await fetch(`/api/kanban/items`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          idKanban,
-          item,
-        }),
+        body: JSON.stringify({ idKanban, item }),
       });
 
       const result: {
@@ -101,9 +99,11 @@ export const KanbanBoardContextProvider: React.FC<{
             switch (k.status) {
               case "doing":
                 k.status = "to do";
+                handleMoveItemTo(idKanban, idItem, "to do");
                 break;
               case "done":
                 k.status = "doing";
+                handleMoveItemTo(idKanban, idItem, "doing");
                 break;
               default:
                 throw new Error("it couldn't be moved the item");
@@ -134,9 +134,11 @@ export const KanbanBoardContextProvider: React.FC<{
             switch (k.status) {
               case "to do":
                 k.status = "doing";
+                handleMoveItemTo(idKanban, idItem, "doing");
                 break;
               case "doing":
                 k.status = "done";
+                handleMoveItemTo(idKanban, idItem, "done");
                 break;
               default:
                 throw new Error("it couldn't be moved the item");
