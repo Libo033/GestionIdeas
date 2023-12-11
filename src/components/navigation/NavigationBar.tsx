@@ -33,7 +33,7 @@ const NavigationBar = () => {
         onClose={() => setToggleDrawer(false)}
         open={toggleDrawer}
       >
-        <NavigationDrawer />
+        <NavigationDrawer setToggleDrawer={setToggleDrawer} />
       </Drawer>
     </nav>
   );
