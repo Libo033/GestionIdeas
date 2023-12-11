@@ -1,19 +1,20 @@
-import React, { FormEvent } from "react";
+import React, { FormEvent, useContext } from "react";
 import styles from "./Components.module.css";
 import { IItemsHandler } from "@/libs/interfaces";
 import { TextField } from "@mui/material";
-import { handleCreateItem } from "@/libs/itemsHandlers";
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { KanbanBoardContext } from "@/context/KanbanBoardContext";
 
 const ItemsHandler: React.FC<IItemsHandler> = (props) => {
   const router: AppRouterInstance = useRouter();
+  const { handleCreateItem: newItem } = useContext(KanbanBoardContext);
 
   return (
     <div className={styles.ItemsHandler}>
       <form
         onSubmit={(Event: FormEvent) =>
-          props.idKanban && handleCreateItem(Event, router, props.idKanban)
+          props.idKanban && newItem && newItem(Event, router, props.idKanban)
         }
         className={styles.ItemsHandler_form}
       >

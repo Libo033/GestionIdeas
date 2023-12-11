@@ -61,6 +61,7 @@ export interface IKanbanBoardContext {
   handleMoveNext: Function | null;
   handleMoveBack: Function | null;
   handleDeleteItem: Function | null;
+  handleCreateItem: Function | null;
 }
 
 export interface IKanbanItemComponent {

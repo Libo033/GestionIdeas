@@ -1,6 +1,7 @@
 "use client";
-import { IKanban, IKanbanBoardContext } from "@/libs/interfaces";
-import React, { createContext, useEffect, useState } from "react";
+import { IKanban, IKanbanBoardContext, IKanbanItem } from "@/libs/interfaces";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import React, { FormEvent, createContext, useEffect, useState } from "react";
 
 const kanban_init: IKanban[] = [
   { _id: "", name: "", content: [], create_date: "" },
@@ -12,6 +13,7 @@ const defaultValue: IKanbanBoardContext = {
   handleMoveNext: null,
   handleMoveBack: null,
   handleDeleteItem: null,
+  handleCreateItem: null,
 };
 
 export const KanbanBoardContext: React.Context<IKanbanBoardContext> =
@@ -42,6 +44,50 @@ export const KanbanBoardContextProvider: React.FC<{
 
     return () => controller.abort();
   }, []);
+
+  const handleCreateItem = async (
+    Event: FormEvent,
+    router: AppRouterInstance,
+    idKanban: string
+  ) => {
+    try {
+      Event.preventDefault();
+
+      let item = (
+        document.getElementById("item_handler_text") as HTMLInputElement
+      ).value;
+
+      const response = await fetch(`/api/kanban/items`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          idKanban,
+          item,
+        }),
+      });
+
+      const result: {
+        Item: IKanbanItem;
+        status: number;
+        kanban: string;
+      } = await response.json();
+
+      let allKanban = kanban;
+      allKanban.forEach((k) => {
+        if (k._id === result.kanban) k.content.push(result.Item);
+      });
+
+      setKanban(allKanban);
+
+      if (result.status === 201) {
+        router.push(`/home/kanban/${idKanban}`);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
+    }
+  };
 
   const handleMoveBack = (idKanban: string, idItem: string): void => {
     try {
@@ -142,6 +188,7 @@ export const KanbanBoardContextProvider: React.FC<{
         handleMoveBack,
         handleDeleteItem,
         handleMoveNext,
+        handleCreateItem,
       }}
     >
       {children}
