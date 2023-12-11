@@ -71,10 +71,6 @@ const KanbanItemClickeable = (
           BACK
         </p>
       )}
-      <p className={styles.KanbanItemClickeable_button}>
-        <Image src={"/img/edit.svg"} alt="edit" width={18} height={18} />
-        EDIT
-      </p>
       {handleDeleteItem && (
         <p
           onClick={() => handleDeleteItem(idKanban, idItem)}
