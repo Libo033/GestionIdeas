@@ -55,6 +55,7 @@ const NoteHandler: React.FC<INoteHandler> = (props) => {
             InputLabelProps={{ shrink: true }}
             label="TITLE"
             variant="filled"
+            autoComplete="off"
             fullWidth
             required
           />
@@ -65,6 +66,7 @@ const NoteHandler: React.FC<INoteHandler> = (props) => {
             InputLabelProps={{ shrink: true }}
             label="CONTENT"
             variant="filled"
+            autoComplete="off"
             multiline
             rows={5}
             fullWidth

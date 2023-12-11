@@ -22,6 +22,7 @@ const KanbanHandler: React.FC<IKanbanHandler> = (props) => {
             InputLabelProps={{ shrink: true }}
             label="NAME"
             variant="filled"
+            autoComplete="off"
             fullWidth
             required
           />

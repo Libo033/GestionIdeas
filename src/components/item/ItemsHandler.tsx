@@ -25,6 +25,7 @@ const ItemsHandler: React.FC<IItemsHandler> = (props) => {
             label="TEXT"
             variant="filled"
             fullWidth
+            autoComplete="off"
             required
           />
         </div>
