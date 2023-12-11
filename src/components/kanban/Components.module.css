@@ -139,6 +139,7 @@
   border-radius: 6px;
   padding: 9px;
   height: fit-content;
+  cursor: pointer;
 }
 
 .KanbanItem p {

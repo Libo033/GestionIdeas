@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./Components.module.css";
-import { Tooltip } from "@mui/material";
+import { ClickAwayListener, Tooltip } from "@mui/material";
 import Image from "next/image";
 import { IKanbanItemComponent } from "@/libs/interfaces";
 import { KanbanBoardContext } from "@/context/KanbanBoardContext";
@@ -85,15 +85,27 @@ const KanbanItemClickeable = (
 };
 
 const KanbanItem: React.FC<IKanbanItemComponent> = ({ item, idKanban }) => {
+  const [tooltip, setTooltip] = useState<boolean>(false);
+
   return (
-    <Tooltip
-      title={KanbanItemClickeable(item._id, item.status, idKanban)}
-      arrow
-    >
-      <div className={styles.KanbanItem}>
-        <p>{item.data}</p>
-      </div>
-    </Tooltip>
+    <ClickAwayListener onClickAway={() => setTooltip(false)}>
+      <Tooltip
+        title={KanbanItemClickeable(item._id, item.status, idKanban)}
+        PopperProps={{
+          disablePortal: true,
+        }}
+        open={tooltip}
+        onClose={() => setTooltip(false)}
+        disableFocusListener
+        disableHoverListener
+        disableTouchListener
+        arrow
+      >
+        <div onClick={() => setTooltip(!tooltip)} className={styles.KanbanItem}>
+          <p>{item.data}</p>
+        </div>
+      </Tooltip>
+    </ClickAwayListener>
   );
 };
 
