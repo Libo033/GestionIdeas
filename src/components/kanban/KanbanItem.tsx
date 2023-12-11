@@ -89,22 +89,23 @@ const KanbanItem: React.FC<IKanbanItemComponent> = ({ item, idKanban }) => {
 
   return (
     <ClickAwayListener onClickAway={() => setTooltip(false)}>
-      <Tooltip
-        title={KanbanItemClickeable(item._id, item.status, idKanban)}
-        PopperProps={{
-          disablePortal: true,
-        }}
-        open={tooltip}
-        onClose={() => setTooltip(false)}
-        disableFocusListener
-        disableHoverListener
-        disableTouchListener
-        arrow
-      >
-        <div onClick={() => setTooltip(!tooltip)} className={styles.KanbanItem}>
-          <p>{item.data}</p>
-        </div>
-      </Tooltip>
+      <div>
+        <Tooltip
+          title={KanbanItemClickeable(item._id, item.status, idKanban)}
+          PopperProps={{
+            disablePortal: true,
+          }}
+          open={tooltip}
+          disableFocusListener
+          disableHoverListener
+          disableTouchListener
+          arrow
+        >
+          <div onClick={() => setTooltip(true)} className={styles.KanbanItem}>
+            <p>{item.data}</p>
+          </div>
+        </Tooltip>
+      </div>
     </ClickAwayListener>
   );
 };
