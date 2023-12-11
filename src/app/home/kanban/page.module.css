@@ -30,6 +30,11 @@
 }
 
 @media (min-width: 300px) and (max-width: 700px) {
+  .Kanban {
+    padding-inline: 2%;
+    padding-block: 2%;
+  }
+
   .Kanban_loaded {
     margin-block: 1.5rem;
     font-size: 27px;
