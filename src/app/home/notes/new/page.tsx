@@ -8,13 +8,13 @@ const page = () => {
     <main className={styles.Notes}>
       <div className="Dashboard_Breadcrumbs">
         <span>{"/ "}</span>
-        <Link href={"/home"}>Home</Link>
+        <Link href={"/home"}>Inicio</Link>
         <span>{" / "}</span>
-        <Link href={"/home/notes"}>Notes</Link>
+        <Link href={"/home/notes"}>Notas</Link>
         <span>{" / "}</span>
-        <span>New</span>
+        <span>Nueva</span>
       </div>
-      <h1>New Note</h1>
+      <h1>Nueva Nota</h1>
       <NoteHandler id={undefined} />
     </main>
   );

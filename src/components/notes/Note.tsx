@@ -44,8 +44,7 @@ const Note: React.FC<INote> = (props) => {
         </div>
         <div className={styles.Note_createdAtContainer}>
           <span className={styles.Note_createdAt}>
-            Created at{" "}
-            {props.create_date.slice(0, props.create_date.length - 3)}
+            Creada el {props.create_date.slice(0, props.create_date.length - 3)}
           </span>
         </div>
       </article>

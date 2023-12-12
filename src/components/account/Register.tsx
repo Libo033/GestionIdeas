@@ -43,12 +43,12 @@ const Register: React.FC<{ signIn: string }> = ({ signIn }) => {
           height={90}
         />
       </div>
-      <h1 className={styles.register_Title}>Sign up</h1>
+      <h1 className={styles.register_Title}>Registrarse</h1>
       <form className={styles.register_Form} action="">
         <div className={styles.register_InputDoubleContainer}>
           <TextField
             id={$NAME}
-            label="First Name"
+            label="Nombre"
             variant="outlined"
             fullWidth={true}
             type="text"
@@ -57,7 +57,7 @@ const Register: React.FC<{ signIn: string }> = ({ signIn }) => {
           />
           <TextField
             id={$LAST_NAME}
-            label="Last Name"
+            label="Apellido"
             variant="outlined"
             fullWidth={true}
             type="text"
@@ -79,7 +79,7 @@ const Register: React.FC<{ signIn: string }> = ({ signIn }) => {
         <div>
           <TextField
             id={$PASSWORD}
-            label="Password"
+            label="Contraseña"
             variant="outlined"
             fullWidth={true}
             type="password"
@@ -88,11 +88,11 @@ const Register: React.FC<{ signIn: string }> = ({ signIn }) => {
           />
         </div>
         <Button onClick={() => createNewUser()} variant="contained">
-          SIGN UP
+          REGISTRARSE
         </Button>
       </form>
       <div className={styles.register_SignInContainer}>
-        <Link href={"/" + signIn}>Already have an account? Sign in</Link>
+        <Link href={"/" + signIn}>Ya tenes cuenta? inicia sesion</Link>
       </div>
     </div>
   );

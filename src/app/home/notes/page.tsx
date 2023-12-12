@@ -34,12 +34,12 @@ const Notes = () => {
     <main className={styles.Notes}>
       <div className="Dashboard_Breadcrumbs">
         <span>{"/ "}</span>
-        <Link href={"/home"}>Home</Link>
+        <Link href={"/home"}>Inicio</Link>
         <span>{" / "}</span>
-        <span>Notes</span>
+        <span>Notas</span>
       </div>
-      <h1>Notes</h1>
-      <Link href={"/home/notes/new"}>Create note</Link>
+      <h1>Notas</h1>
+      <Link href={"/home/notes/new"}>Crear nota</Link>
       <section className={styles.Notes_notesContainer}>
         {notes.length > 0 ? (
           notes.map((note) => (
@@ -56,9 +56,7 @@ const Notes = () => {
           <>
             {loaded && notes.length === 0 ? (
               <>
-                <p className={styles.Notes_loaded}>
-                  You'll see your notes here
-                </p>
+                <p className={styles.Notes_loaded}>Veras tus notas aquí.</p>
               </>
             ) : (
               <>

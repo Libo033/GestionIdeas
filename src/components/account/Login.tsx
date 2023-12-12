@@ -45,7 +45,7 @@ const Login: React.FC<{ forgotPass: string; signUp: string }> = ({
           height={90}
         />
       </div>
-      <h1 className={styles.login_Title}>Sign in</h1>
+      <h1 className={styles.login_Title}>Iniciar Sesion</h1>
       <form className={styles.login_Form}>
         <div className={styles.login_InputContainer}>
           <TextField
@@ -61,7 +61,7 @@ const Login: React.FC<{ forgotPass: string; signUp: string }> = ({
         <div className={styles.login_InputContainer}>
           <TextField
             id={$PASSWORD}
-            label="Password"
+            label="Contraseña"
             variant="outlined"
             fullWidth={true}
             type="password"
@@ -73,12 +73,12 @@ const Login: React.FC<{ forgotPass: string; signUp: string }> = ({
           <span className={styles.login_errorSpan}>{errorMessage}</span>
         )}
         <Button onClick={() => signInWithEmail()} variant="contained">
-          SIGN IN
+          Iniciar Sesion
         </Button>
       </form>
       <div className={styles.login_SignUpContainer}>
-        <Link href={"/" + forgotPass}>Forgot password?</Link>
-        <Link href={"/" + signUp}>Don&apos;t have an account? Sign Up</Link>
+        <Link href={"/" + forgotPass}>Olvidaste tu constraseña?</Link>
+        <Link href={"/" + signUp}>No tenes una cuenta? Registrate!</Link>
       </div>
     </div>
   );

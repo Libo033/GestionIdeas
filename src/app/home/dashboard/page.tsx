@@ -11,11 +11,11 @@ const Dashboard = () => {
     <main className={styles.Dashboard}>
       <div className="Dashboard_Breadcrumbs">
         <span>{"/ "}</span>
-        <Link href={"/home"}>Home</Link>
+        <Link href={"/home"}>Inicio</Link>
         <span>{" / "}</span>
-        <span>Dashboard</span>
+        <span>Tablero</span>
       </div>
-      Dashboard
+      Tablero
     </main>
   );
 };

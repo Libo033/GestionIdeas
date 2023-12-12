@@ -13,13 +13,13 @@ const page = () => {
     <main className={styles.Notes}>
       <div className="Dashboard_Breadcrumbs">
         <span>{"/ "}</span>
-        <Link href={"/home"}>Home</Link>
+        <Link href={"/home"}>Inicio</Link>
         <span>{" / "}</span>
-        <Link href={"/home/notes"}>Notes</Link>
+        <Link href={"/home/notes"}>Notas</Link>
         <span>{" / "}</span>
-        <span>Edit</span>
+        <span>Editar</span>
       </div>
-      <h1>Edit Note</h1>
+      <h1>Editar Nota</h1>
       {id && <NoteHandler id={id} />}
     </main>
   );

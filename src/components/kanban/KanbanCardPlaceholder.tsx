@@ -1,5 +1,5 @@
-import React from 'react'
-import styles from './Components.module.css';
+import React from "react";
+import styles from "./Components.module.css";
 
 const KanbanCardPlaceholder = () => {
   return (
@@ -8,7 +8,7 @@ const KanbanCardPlaceholder = () => {
         <div className={styles.KanbanCardPlaceholder_background}></div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default KanbanCardPlaceholder
+export default KanbanCardPlaceholder;

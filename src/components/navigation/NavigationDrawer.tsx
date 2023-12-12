@@ -31,7 +31,7 @@ const NavigationDrawer: React.FC<{
                 width={45}
                 height={45}
               />
-              <p>Dashboard</p>
+              <p>Tablero</p>
             </div>
           </Link>
         </li>
@@ -48,7 +48,7 @@ const NavigationDrawer: React.FC<{
                 width={45}
                 height={45}
               />
-              <p>Notes</p>
+              <p>Notas</p>
             </div>
           </Link>
         </li>

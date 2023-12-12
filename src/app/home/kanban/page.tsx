@@ -13,12 +13,12 @@ const Kanban = () => {
     <main className={styles.Kanban}>
       <div className="Dashboard_Breadcrumbs">
         <span>{"/ "}</span>
-        <Link href={"/home"}>Home</Link>
+        <Link href={"/home"}>Inicio</Link>
         <span>{" / "}</span>
         <span>Kanban</span>
       </div>
       <h1>Kanban</h1>
-      <Link href={"/home/kanban/new"}>Create kanban</Link>
+      <Link href={"/home/kanban/new"}>Crear kanban</Link>
       <section className={styles.Kanban_cardsContainer}>
         {kanban.length > 0 ? (
           kanban.map((kanban) => (
@@ -35,7 +35,7 @@ const Kanban = () => {
             {loaded && kanban.length === 0 ? (
               <>
                 <p className={styles.Kanban_loaded}>
-                  You'll see your kanban here
+                  Veras tus kanban aquí.
                 </p>
               </>
             ) : (

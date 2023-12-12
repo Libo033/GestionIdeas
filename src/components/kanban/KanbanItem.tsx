@@ -77,7 +77,7 @@ const KanbanItemClickeable = (
           className={styles.KanbanItemClickeable_deleteButton}
         >
           <Image src={"/img/delete.svg"} alt="thrash" width={18} height={18} />
-          DELETE
+          ELIMINAR
         </p>
       )}
     </div>

@@ -20,7 +20,7 @@ const KanbanHandler: React.FC<IKanbanHandler> = (props) => {
           <TextField
             id="kanban_handler_name"
             InputLabelProps={{ shrink: true }}
-            label="NAME"
+            label="NOMBRE"
             variant="filled"
             autoComplete="off"
             fullWidth

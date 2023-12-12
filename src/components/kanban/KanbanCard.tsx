@@ -21,7 +21,9 @@ const KanbanCard: React.FC<IKanban> = (props) => {
       ) : (
         <p>{props.name}</p>
       )}
-      <span>Created at {props.create_date}</span>
+      <span>
+        Creado el {props.create_date.slice(0, props.create_date.length - 3)}
+      </span>
     </article>
   );
 };

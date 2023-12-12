@@ -20,7 +20,7 @@ const IdKanban = ({ params }: { params: { id: string } }) => {
     <main className={styles.Kanban}>
       <div className="Dashboard_Breadcrumbs">
         <span>{"/ "}</span>
-        <Link href={"/home"}>Home</Link>
+        <Link href={"/home"}>Inicio</Link>
         <span>{" / "}</span>
         <Link href={"/home/kanban"}>Kanban</Link>
         <span>{" / "}</span>
@@ -30,7 +30,7 @@ const IdKanban = ({ params }: { params: { id: string } }) => {
         <>
           <h1>{kanban.name}</h1>
           <Link href={`/home/kanban/items?kanban=${params.id}`}>
-            Create item
+            Crear Item
           </Link>
           <div className={styles.Kanban_boardContainer}>
             <KanbanBoard kanban={kanban} setKanban={setKanban} />

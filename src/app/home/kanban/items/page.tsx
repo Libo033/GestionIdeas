@@ -24,7 +24,7 @@ const Items = () => {
     <main className={styles.Kanban}>
       <div className="Dashboard_Breadcrumbs">
         <span>{"/ "}</span>
-        <Link href={"/home"}>Home</Link>
+        <Link href={"/home"}>Inicio</Link>
         <span>{" / "}</span>
         <Link href={"/home/kanban"}>Kanban</Link>
         <span>{" / "}</span>
@@ -34,9 +34,9 @@ const Items = () => {
           </Link>
         )}
         <span>{" / "}</span>
-        <span>New item</span>
+        <span>Nuevo Item</span>
       </div>
-      <h1>New item</h1>
+      <h1>Nuevo Item</h1>
       <div className={styles.Kanban_boardContainer}>
         <ItemsHandler idKanban={idKanban} idItem={idItem} />
       </div>

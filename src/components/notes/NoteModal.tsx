@@ -45,14 +45,14 @@ const NoteModal: React.FC<INoteModal> = (props) => {
           onClick={() => handleEdit(props._id)}
         >
           <Image src={"/img/edit.svg"} alt="edit" width={45} height={45} />
-          EDIT
+          EDITAR
         </button>
         <button
           className={styles.NoteModal_delete}
           onClick={() => handleDelete(props._id)}
         >
           <Image src={"/img/delete.svg"} alt="trash" width={45} height={45} />
-          DELETE
+          ELIMINAR
         </button>
       </div>
     </div>

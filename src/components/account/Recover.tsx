@@ -39,14 +39,15 @@ const Recover = () => {
           height={90}
         />
       </div>
-      <h1 className={styles.Recover_Title}>Forgot password?</h1>
+      <h1 className={styles.Recover_Title}>Olvidaste tu constraseña?</h1>
       <span className={styles.Recover_SubTitle}>
-        No worries, we&apos;ll send you reset instructions.
+        No te preocupes, te mandaremos las instrucciones para que cambies tu
+        costraseña.
       </span>
       {emailSent ? (
         <div className={styles.Recover_Sent}>
           <Image src={"/img/check.png"} alt="check" width={78} height={78} />
-          <p>Email sent successfull!</p>
+          <p>Email enviado exitosamente!</p>
         </div>
       ) : (
         <form
@@ -65,12 +66,12 @@ const Recover = () => {
             />
           </div>
           <Button type="submit" variant="contained">
-            SEND MAIL
+            ENVIAR
           </Button>
         </form>
       )}
       <div className={styles.Recover_SignInContainer}>
-        <Link href={"/"}>Back to sign in</Link>
+        <Link href={"/"}>Volver a inicio de sesion</Link>
       </div>
     </div>
   );

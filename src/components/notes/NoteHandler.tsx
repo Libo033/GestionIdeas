@@ -53,7 +53,7 @@ const NoteHandler: React.FC<INoteHandler> = (props) => {
           <TextField
             id="note_handler_title"
             InputLabelProps={{ shrink: true }}
-            label="TITLE"
+            label="TITULO"
             variant="filled"
             autoComplete="off"
             fullWidth
@@ -64,7 +64,7 @@ const NoteHandler: React.FC<INoteHandler> = (props) => {
           <TextField
             id="note_handler_content"
             InputLabelProps={{ shrink: true }}
-            label="CONTENT"
+            label="CONTENIDO"
             variant="filled"
             autoComplete="off"
             multiline
@@ -78,7 +78,7 @@ const NoteHandler: React.FC<INoteHandler> = (props) => {
             className={styles.NoteHandler_expireLabel}
             htmlFor="note_handler_expire"
           >
-            EXPIRE DATE
+            LIMITE
           </label>
           <input
             id="note_handler_expire"

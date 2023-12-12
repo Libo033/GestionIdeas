@@ -8,13 +8,13 @@ const New = () => {
     <main className={styles.Kanban}>
       <div className="Dashboard_Breadcrumbs">
         <span>{"/ "}</span>
-        <Link href={"/home"}>Home</Link>
+        <Link href={"/home"}>Inicio</Link>
         <span>{" / "}</span>
         <Link href={"/home/kanban"}>Kanban</Link>
         <span>{" / "}</span>
-        <span>New</span>
+        <span>Nuevo</span>
       </div>
-      <h1>New kanban</h1>
+      <h1>Nuevo kanban</h1>
       <KanbanHandler id={undefined} />
     </main>
   );

@@ -22,7 +22,7 @@ const ItemsHandler: React.FC<IItemsHandler> = (props) => {
           <TextField
             id="item_handler_text"
             InputLabelProps={{ shrink: true }}
-            label="TEXT"
+            label="TEXTO"
             variant="filled"
             fullWidth
             autoComplete="off"
@@ -30,7 +30,7 @@ const ItemsHandler: React.FC<IItemsHandler> = (props) => {
           />
         </div>
         <button type="submit" className={styles.ItemsHandler_submit}>
-          {props.idItem ? "EDIT" : "CREATE"}
+          {props.idItem ? "EDITAR" : "CREAR"}
         </button>
       </form>
     </div>
