@@ -62,7 +62,7 @@ export async function PUT(
     let secret_key: Uint8Array = new TextEncoder().encode(
       process.env.JWT_SECRET
     );
-    const data = await req.json();
+    const data: { name: string } = await req.json();
 
     if (mySession === undefined) {
       return Response.json({ Error: "Account doesn't exist" }, { status: 401 });
@@ -79,16 +79,16 @@ export async function PUT(
 
     const db: Db = client.db(value.payload.uid);
 
-    const edit_kanban = {
-      name: data.name,
-      content: data.content,
-    };
+    const kanbanModified = await db.collection("kanban").findOneAndUpdate(
+      { _id: new ObjectId(id) },
+      {
+        $set: {
+          name: data.name,
+        },
+      }
+    );
 
-    const edit_kanban_edited = await db
-      .collection("kanban")
-      .updateOne({ _id: new ObjectId(id) }, { $set: edit_kanban });
-
-    return Response.json(edit_kanban_edited.acknowledged, { status: 200 });
+    return Response.json({ kanban: kanbanModified, status: 200 }, { status: 200 });
   } catch (error) {
     if (error instanceof Error) {
       return Response.json({ Error: error.message }, { status: 500 });
