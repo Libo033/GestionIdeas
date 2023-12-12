@@ -129,7 +129,7 @@ export async function DELETE(
       .deleteOne({ _id: new ObjectId(id) });
 
     return Response.json(
-      { deleted: kanban_deleted.acknowledged },
+      { deleted: kanban_deleted.acknowledged, status: 200 },
       { status: 200 }
     );
   } catch (error) {

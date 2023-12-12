@@ -7,6 +7,13 @@ import Link from "next/link";
 import Image from "next/image";
 
 const ToolTipOpt = (id: string) => {
+  const deleteKanban = async () => {
+    await fetch(`/api/kanban/${id}`, { method: "DELETE" });
+    setTimeout(() => {
+      location.reload();
+    }, 300);
+  };
+
   return (
     <div className={styles.ToolTipOpt}>
       <Link className={styles.ToolTipOpt_optEdit} href={`/home/kanban/${id}`}>
@@ -20,7 +27,7 @@ const ToolTipOpt = (id: string) => {
         <Image src={"/img/edit.svg"} alt="editar" width={18} height={18} />
         EDITAR
       </Link>
-      <p className={styles.ToolTipOpt_optDel}>
+      <p onClick={() => deleteKanban()} className={styles.ToolTipOpt_optDel}>
         <Image src={"/img/delete.svg"} alt="editar" width={18} height={18} />
         ELIMINAR
       </p>
