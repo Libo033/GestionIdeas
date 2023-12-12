@@ -176,6 +176,47 @@
 }
 /*#endregion */
 
+/*#region TOOLTIPOPT */
+.ToolTipOpt {
+  display: flex;
+  flex-direction: column;
+}
+
+.ToolTipOpt_optEdit {
+  transition: 90ms ease-in-out;
+  padding-inline: 10px;
+  padding-block: 8px;
+  font-size: 16px;
+  text-decoration: underline;
+  display: flex;
+  gap: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.ToolTipOpt_optDel {
+  transition: 90ms ease-in-out;
+  padding-inline: 10px;
+  padding-block: 8px;
+  font-size: 16px;
+  text-decoration: underline;
+  display: flex;
+  gap: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.ToolTipOpt_optEdit:hover {
+  transition: 90ms ease-in-out;
+  background-color: #62c0bf72;
+}
+
+.ToolTipOpt_optDel:hover {
+  transition: 90ms ease-in-out;
+  background-color: #ff000081;
+}
+/*#endregion */
+
 @media (max-width: 700px) {
   /*#region KANBANITEMCLICKEABLE */
   .KanbanItemClickeable p {

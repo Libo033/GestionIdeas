@@ -82,7 +82,7 @@ const NavigationDrawer: React.FC<{
               width={30}
               height={30}
             />
-            Log out
+            Cerrar Sesion
           </button>
         )}
       </div>

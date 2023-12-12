@@ -1,7 +1,9 @@
+"use client";
 import React from "react";
 import styles from "../page.module.css";
 import Link from "next/link";
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
+import KanbanHandler from "@/components/kanban/KanbanHandler";
 
 const Edit = () => {
   const searchParams: ReadonlyURLSearchParams = useSearchParams();
@@ -17,6 +19,8 @@ const Edit = () => {
         <span>{" / "}</span>
         <span>Editar</span>
       </div>
+      <h1>Editar Kanban</h1>
+      {id && <KanbanHandler id={id} />}
     </main>
   );
 };
