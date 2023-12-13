@@ -177,10 +177,11 @@
 }
 
 .Recover_SubTitle {
+  padding-inline: 12px;
   margin-top: 9px;
   font-weight: 300;
   color: gray;
-  text-align: justify;
+  text-align: center;
 }
 
 .Recover_Form {
@@ -268,6 +269,10 @@
   /*#region RECOVER */
   .Recover_Form {
     width: 48%;
+  }
+
+  .Recover_SubTitle {
+    text-align: center;
   }
   /*#endregion */
 }
