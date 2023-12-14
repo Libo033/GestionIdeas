@@ -18,7 +18,7 @@ const Kanban = () => {
         <span>Kanban</span>
       </div>
       <h1>Kanban</h1>
-      <Link href={"/home/kanban/new"}>Crear kanban</Link>
+      <Link className="link" href={"/home/kanban/new"}>Crear kanban</Link>
       <section className={styles.Kanban_cardsContainer}>
         {kanban.length > 0 ? (
           kanban.map((kanban) => (

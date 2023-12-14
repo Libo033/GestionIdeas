@@ -152,6 +152,7 @@
   width: 100%;
   height: fit-content;
   margin-top: 1rem;
+  padding-inline: 4.5%;
 }
 
 .NoteHandler_form {

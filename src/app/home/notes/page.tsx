@@ -39,7 +39,7 @@ const Notes = () => {
         <span>Notas</span>
       </div>
       <h1>Notas</h1>
-      <Link href={"/home/notes/new"}>Crear nota</Link>
+      <Link className="link" href={"/home/notes/new"}>Crear nota</Link>
       <section className={styles.Notes_notesContainer}>
         {notes.length > 0 ? (
           notes.map((note) => (

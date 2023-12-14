@@ -4,14 +4,17 @@
   max-width: 1536px;
   margin-left: auto;
   margin-right: auto;
-  padding-inline: 4.5%;
   padding-block: 1%;
   background-color: #f9f9f9;
 }
 
+.Notes h1{
+  padding-inline: 4.5%;
+}
+
 .Notes_notesContainer {
+  padding-inline: 4.5%;
   padding-block: 2.1rem;
-  padding-inline: 12px;
   display: grid;
   place-items: center;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

@@ -8,6 +8,7 @@
 }
 
 .Dashboard_Breadcrumbs {
+  padding-inline: 4.5%;
   font-size: 16px;
   color: #3283b8;
 }
@@ -27,4 +28,8 @@
 
 .MuiTooltip-tooltip {
   padding: 0;
+}
+
+.link {
+  padding-inline: 4.5%;
 }
