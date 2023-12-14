@@ -7,7 +7,7 @@
   border: 1.5px solid #0f4d7590;
   border-radius: 9px;
   background-color: #fff;
-  box-shadow: 3px 6px 9px #90909060;
+  box-shadow: 0px 6px 9px #90909072;
   cursor: pointer;
   display: grid;
 }
@@ -15,7 +15,7 @@
 .Note:hover {
   transition: 120ms ease-in-out 0s;
   background-color: #bde1fa72;
-  box-shadow: 3px 6px 9px #90909099;
+  box-shadow: 3px 6px 9px #90909051;
   transform: translateY(-3px);
 }
 
