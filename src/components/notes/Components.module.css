@@ -29,6 +29,11 @@
   color: #0f4d75;
 }
 
+.Note_titleContainer p {
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+}
+
 .Note_contentContainer {
   min-height: 90px;
   max-height: 92px;

@@ -29,16 +29,12 @@ const Note: React.FC<INote> = (props) => {
       </Modal>
       <article onClick={() => setModal(true)} className={styles.Note}>
         <div className={styles.Note_titleContainer}>
-          <p>
-            {props.title.length > 33
-              ? props.title.slice(0, 33) + "..."
-              : props.title}
-          </p>
+          <p>{props.title}</p>
         </div>
         <div className={styles.Note_contentContainer}>
           <p>
-            {props.content.length > 99
-              ? props.content.slice(0, 99) + "..."
+            {props.content.length > 100
+              ? props.content.slice(0, 100) + "..."
               : props.content}
           </p>
         </div>
