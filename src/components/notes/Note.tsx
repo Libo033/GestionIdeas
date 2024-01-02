@@ -1,9 +1,25 @@
 import { INote } from "@/libs/interfaces";
 import React, { useState } from "react";
 import styles from "./Components.module.css";
-import { Fade, Modal } from "@mui/material";
+import { Fade, Modal, Tooltip } from "@mui/material";
 import NoteModal from "./NoteModal";
 import Backdrop from "@mui/material/Backdrop";
+
+const ToolTipNote = (expire: number) => {
+  let expire_date: string = "Vence el " + new Date(expire).toLocaleString();
+
+  return (
+    <div>
+      {expire !== 0 ? (
+        <p style={{ padding: "6px 12px" }}>
+          {expire_date.slice(0, expire_date.indexOf(","))}
+        </p>
+      ) : (
+        ""
+      )}
+    </div>
+  );
+};
 
 const Note: React.FC<INote> = (props) => {
   const [modal, setModal] = useState<boolean>(false);
@@ -27,23 +43,31 @@ const Note: React.FC<INote> = (props) => {
           </div>
         </Fade>
       </Modal>
-      <article onClick={() => setModal(true)} className={styles.Note}>
-        <div className={styles.Note_titleContainer}>
-          <p>{props.title}</p>
-        </div>
-        <div className={styles.Note_contentContainer}>
-          <p>
-            {props.content.length > 100
-              ? props.content.slice(0, 100) + "..."
-              : props.content}
-          </p>
-        </div>
-        <div className={styles.Note_createdAtContainer}>
-          <span className={styles.Note_createdAt}>
-            Creada el {props.create_date.slice(0, props.create_date.length - 3)}
-          </span>
-        </div>
-      </article>
+      <Tooltip
+        sx={{ padding: "10px" }}
+        title={ToolTipNote(props.expire_date)}
+        disableInteractive
+        arrow
+      >
+        <article onClick={() => setModal(true)} className={styles.Note}>
+          <div className={styles.Note_titleContainer}>
+            <p>{props.title}</p>
+          </div>
+          <div className={styles.Note_contentContainer}>
+            <p>
+              {props.content.length > 100
+                ? props.content.slice(0, 100) + "..."
+                : props.content}
+            </p>
+          </div>
+          <div className={styles.Note_createdAtContainer}>
+            <span className={styles.Note_createdAt}>
+              Creada el{" "}
+              {props.create_date.slice(0, props.create_date.length - 3)}
+            </span>
+          </div>
+        </article>
+      </Tooltip>
     </>
   );
 };
