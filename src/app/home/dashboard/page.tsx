@@ -1,20 +1,30 @@
 "use client";
-import { AuthContext } from "@/context/AuthContext";
 import Link from "next/link";
-import React, { useContext } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./page.module.css";
 import Note from "@/components/notes/Note";
+import { INote } from "@/libs/interfaces";
 
 const Dashboard = () => {
-  const { user } = useContext(AuthContext);
+  const [nextNotes, setNextNotes] = useState<INote[]>([]);
 
-  const noteData = {
-    _id: "1",
-    title: "valentinlibonati33@gmail.com",
-    content: "12346789 asd",
-    create_date: "22/11/2023, 14:41:49",
-    expire_date: 1,
-  };
+  useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    fetch(`/api/notes/next`, { signal })
+      .then((res) => res.json())
+      .then((data) => {
+        setNextNotes(data);
+      })
+      .catch((error) => {
+        if (error instanceof Error) {
+          console.log(error.message);
+        }
+      });
+
+    return () => controller.abort();
+  }, []);
 
   return (
     <main className={styles.Dashboard}>
@@ -30,10 +40,9 @@ const Dashboard = () => {
           <p className={styles.Dashboard_notesSubTitle}>Proximas notas:</p>
           <section>
             {/*Maximo de 7 notas*/}
-            <Note {...noteData} />
-            <Note {...noteData} />
-            <Note {...noteData} />
-            <Note {...noteData} />
+            {nextNotes.slice(0, 6).map((note) => (
+              <Note {...note} />
+            ))}
           </section>
         </div>
         <div className={styles.Dashboard_kanban}>
