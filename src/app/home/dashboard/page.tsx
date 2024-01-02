@@ -13,8 +13,8 @@ const Dashboard = () => {
     title: "valentinlibonati33@gmail.com",
     content: "12346789 asd",
     create_date: "22/11/2023, 14:41:49",
-    expire_date: 1
-  }
+    expire_date: 1,
+  };
 
   return (
     <main className={styles.Dashboard}>
@@ -29,6 +29,7 @@ const Dashboard = () => {
         <div className={styles.Dashboard_notes}>
           <p className={styles.Dashboard_notesSubTitle}>Proximas notas:</p>
           <section>
+            {/*Maximo de 7 notas*/}
             <Note {...noteData} />
             <Note {...noteData} />
             <Note {...noteData} />
