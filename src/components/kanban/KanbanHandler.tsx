@@ -30,7 +30,7 @@ const KanbanHandler: React.FC<IKanbanHandler> = (props) => {
     }
 
     return () => controller.abort();
-  }, []);
+  }, [props.id]);
 
   return (
     <div className={styles.KanbanHandler}>

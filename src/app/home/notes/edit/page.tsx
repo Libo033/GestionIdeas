@@ -5,7 +5,7 @@ import styles from "../page.module.css";
 import NoteHandler from "@/components/notes/NoteHandler";
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 
-const page = () => {
+const Edit = () => {
   const searchParams: ReadonlyURLSearchParams = useSearchParams();
   const id: string | null = searchParams.get("id");
 
@@ -25,4 +25,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Edit;

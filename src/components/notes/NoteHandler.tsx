@@ -37,7 +37,7 @@ const NoteHandler: React.FC<INoteHandler> = (props) => {
     }
 
     return () => controller.abort();
-  }, []);
+  }, [props.id]);
 
   return (
     <div className={styles.NoteHandler}>
