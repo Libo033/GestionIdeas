@@ -28,11 +28,14 @@ export async function GET() {
     const db: Db = client.db(value.payload.uid);
     const all_notes = await db.collection("notes").find().toArray();
     const next_notes = all_notes
-      .filter((note) => note.expire_date !== 0 && note.expire_date > new Date().getTime())
+      .filter(
+        (note) =>
+          note.expire_date !== 0 && note.expire_date > new Date().getTime()
+      )
       .sort((a, b) => a.expire_date - b.expire_date);
 
     return Response.json(next_notes, { status: 200 });
-  } catch (error) {
+  } catch (error: unknown) {
     if (error instanceof Error) {
       return Response.json({ Error: error.message }, { status: 500 });
     }

@@ -24,9 +24,9 @@ export async function POST(req: Request) {
     });
 
     return Response.json({ status: 200 });
-  } catch (error) {
+  } catch (error: unknown) {
     if (error instanceof Error) {
-      return Response.json({ test: error.message }, { status: 500 });
+      return Response.json({ error: error.message }, { status: 500 });
     }
   }
 }

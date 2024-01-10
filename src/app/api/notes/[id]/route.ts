@@ -37,7 +37,7 @@ export async function GET(
       .toArray();
 
     return Response.json(notes[0], { status: 200 });
-  } catch (error) {
+  } catch (error: unknown) {
     if (error instanceof Error) {
       return Response.json({ Error: error.message }, { status: 500 });
     }
@@ -84,7 +84,7 @@ export async function PUT(
       .updateOne({ _id: new ObjectId(id) }, { $set: edit_note });
 
     return Response.json(edit_note_edited.acknowledged, { status: 200 });
-  } catch (error) {
+  } catch (error: unknown) {
     if (error instanceof Error) {
       return Response.json({ Error: error.message }, { status: 500 });
     }
@@ -127,7 +127,7 @@ export async function DELETE(
       { deleted: note_deleted.acknowledged },
       { status: 200 }
     );
-  } catch (error) {
+  } catch (error: unknown) {
     if (error instanceof Error) {
       return Response.json(error.message, { status: 500 });
     }

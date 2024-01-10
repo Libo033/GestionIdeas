@@ -29,7 +29,7 @@ export async function GET() {
     const notes = await db.collection("notes").find().toArray();
 
     return Response.json(notes, { status: 200 });
-  } catch (error) {
+  } catch (error: unknown) {
     if (error instanceof Error) {
       return Response.json({ Error: error.message }, { status: 500 });
     }
@@ -74,7 +74,7 @@ export async function POST(req: Request) {
       { created: new_note_created.acknowledged },
       { status: 201 }
     );
-  } catch (error) {
+  } catch (error: unknown) {
     if (error instanceof Error) {
       return Response.json({ Error: error.message }, { status: 500 });
     }

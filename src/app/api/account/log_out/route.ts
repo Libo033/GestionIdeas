@@ -5,9 +5,9 @@ export function DELETE() {
     cookies().delete("mySession");
 
     return Response.json({ deleted: true }, { status: 200 });
-  } catch (error) {
+  } catch (error: unknown) {
     if (error instanceof Error) {
-      return Response.json({ test: "failed" }, { status: 500 });
+      return Response.json({ error: error.message}, { status: 500 });
     }
   }
 }

@@ -64,7 +64,7 @@ export async function POST(req: Request) {
     } else {
       throw new Error("Something went wrong with the kanban ID");
     }
-  } catch (error) {
+  } catch (error: unknown) {
     if (error instanceof Error) {
       return Response.json(
         { Error: error.message, status: 500 },
@@ -132,7 +132,7 @@ export async function PATCH(req: Request) {
         { status: 401 }
       );
     }
-  } catch (error) {
+  } catch (error: unknown) {
     if (error instanceof Error) {
       return Response.json(
         { Error: error.message, status: 500 },
@@ -198,7 +198,7 @@ export async function DELETE(req: Request) {
         { status: 401 }
       );
     }
-  } catch (error) {
+  } catch (error: unknown) {
     if (error instanceof Error) {
       return Response.json(
         { Error: error.message, status: 500 },

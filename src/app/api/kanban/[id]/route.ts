@@ -40,7 +40,7 @@ export async function GET(
       .toArray();
 
     return Response.json(kanban[0], { status: 200 });
-  } catch (error) {
+  } catch (error: unknown) {
     if (error instanceof Error) {
       return Response.json(
         { Error: error.message, status: 500 },
@@ -88,8 +88,11 @@ export async function PUT(
       }
     );
 
-    return Response.json({ kanban: kanbanModified, status: 200 }, { status: 200 });
-  } catch (error) {
+    return Response.json(
+      { kanban: kanbanModified, status: 200 },
+      { status: 200 }
+    );
+  } catch (error: unknown) {
     if (error instanceof Error) {
       return Response.json({ Error: error.message }, { status: 500 });
     }
@@ -132,7 +135,7 @@ export async function DELETE(
       { deleted: kanban_deleted.acknowledged, status: 200 },
       { status: 200 }
     );
-  } catch (error) {
+  } catch (error: unknown) {
     if (error instanceof Error) {
       return Response.json({ Error: error.message }, { status: 500 });
     }

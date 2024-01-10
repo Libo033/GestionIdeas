@@ -33,7 +33,7 @@ export async function GET() {
     const kanban = await db.collection("kanban").find().toArray();
 
     return Response.json(kanban, { status: 200 });
-  } catch (error) {
+  } catch (error: unknown) {
     if (error instanceof Error) {
       return Response.json(
         { Error: error.message, status: 500 },
@@ -85,7 +85,7 @@ export async function POST(req: Request) {
       { created: new_kanban_created.acknowledged, status: 201 },
       { status: 201 }
     );
-  } catch (error) {
+  } catch (error: unknown) {
     if (error instanceof Error) {
       return Response.json(
         { Error: error.message, status: 500 },
