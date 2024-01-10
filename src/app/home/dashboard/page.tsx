@@ -14,13 +14,11 @@ const Dashboard = () => {
 
     fetch(`/api/notes/next`, { signal })
       .then((res) => res.json())
-      .then((data) => {
+      .then((data: INote[]) => {
         setNextNotes(data);
       })
-      .catch((error) => {
-        if (error instanceof Error) {
-          console.log(error.message);
-        }
+      .catch((error: Error) => {
+        console.log(error.message);
       });
 
     return () => controller.abort();

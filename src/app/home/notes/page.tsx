@@ -16,13 +16,11 @@ const Notes = () => {
 
     fetch(`/api/notes`, { signal })
       .then((res) => res.json())
-      .then((data) => {
+      .then((data: INote[]) => {
         setNotes(data);
       })
-      .catch((error) => {
-        if (error instanceof Error) {
-          console.log(error.message);
-        }
+      .catch((error: Error) => {
+        console.log(error.message);
       });
 
     setLoaded(true);
@@ -39,7 +37,9 @@ const Notes = () => {
         <span>Notas</span>
       </div>
       <h1>Notas</h1>
-      <Link className="link" href={"/home/notes/new"}>Crear nota</Link>
+      <Link className="link" href={"/home/notes/new"}>
+        Crear nota
+      </Link>
       <section className={styles.Notes_notesContainer}>
         {notes.length > 0 ? (
           notes.map((note) => (
