@@ -38,9 +38,13 @@ const Dashboard = () => {
           <p className={styles.Dashboard_notesSubTitle}>Proximas notas:</p>
           <section>
             {/*Maximo de 7 notas*/}
-            {nextNotes.slice(0, 6).map((note) => (
-              <Note {...note} />
-            ))}
+            {nextNotes.length > 0 ? (
+              nextNotes.slice(0, 6).map((note) => <Note {...note} />)
+            ) : (
+              <>
+                <p className={styles.Dashboard_nextNotesLoaded}>Veras tus notas aquí.</p>
+              </>
+            )}
           </section>
         </div>
         <div className={styles.Dashboard_kanban}>
