@@ -20,8 +20,9 @@ const Dashboard = () => {
               <Image
                 src={"/img/notesflatline.svg"}
                 alt="kanban"
-                width={210}
-                height={210}
+                priority={true}
+                width={100}
+                height={100}
               />
               <p>
                 <b>Kanban</b> es un sistema visual para gestionar el trabajo a
@@ -35,8 +36,9 @@ const Dashboard = () => {
               <Image
                 src={"/img/notesoutline.svg"}
                 alt="kanban"
-                width={210}
-                height={210}
+                priority={true}
+                width={270}
+                height={200}
               />
               <p>
                 Nuestra interfaz está diseñada para que puedas organizar tus{" "}
@@ -58,5 +60,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-
