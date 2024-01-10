@@ -8,6 +8,10 @@ import Zoom from "@mui/material/Zoom";
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
+const ToolTipTitle = (title: string) => {
+  return <p style={{ padding: "6px 12px" }}>{title}</p>;
+};
+
 const NoteModal: React.FC<INoteModal> = (props) => {
   const router: AppRouterInstance = useRouter();
 
@@ -30,7 +34,11 @@ const NoteModal: React.FC<INoteModal> = (props) => {
         width={30}
         height={30}
       />
-      <Tooltip title={props.title} arrow TransitionComponent={Zoom}>
+      <Tooltip
+        title={ToolTipTitle(props.title)}
+        arrow
+        TransitionComponent={Zoom}
+      >
         <h2>
           {props.title.length > 36
             ? props.title.slice(0, 36) + "..."
