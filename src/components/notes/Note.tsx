@@ -11,7 +11,7 @@ const ToolTipNote = (expire: number) => {
   return (
     <div>
       {expire !== 0 ? (
-        <p style={{ padding: "6px 12px" }}>
+        <p>
           {expire_date.slice(0, expire_date.indexOf(","))}
         </p>
       ) : (
