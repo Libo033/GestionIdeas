@@ -1,10 +1,24 @@
 import React, { useState } from "react";
 import styles from "./Components.module.css";
 import { IKanban } from "@/libs/interfaces";
-import { ClickAwayListener, Tooltip } from "@mui/material";
+import {
+  ClickAwayListener,
+  Tooltip,
+  TooltipProps,
+  styled,
+  tooltipClasses,
+} from "@mui/material";
 import Zoom from "@mui/material/Zoom";
 import Link from "next/link";
 import Image from "next/image";
+
+const ButtonTooltip = styled(({ className, ...props }: TooltipProps) => (
+  <Tooltip {...props} classes={{ popper: className }} arrow />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    padding: 0,
+  },
+}));
 
 const ToolTipOpt = (id: string) => {
   const deleteKanban = async () => {
@@ -41,7 +55,7 @@ const KanbanCard: React.FC<IKanban> = (props) => {
   return (
     <ClickAwayListener onClickAway={() => setToggleToolTip(false)}>
       <div>
-        <Tooltip
+        <ButtonTooltip
           title={ToolTipOpt(props._id)}
           open={toggleToolTip}
           disableFocusListener
@@ -50,7 +64,6 @@ const KanbanCard: React.FC<IKanban> = (props) => {
           PopperProps={{
             disablePortal: true,
           }}
-          arrow
         >
           <article
             className={styles.KanbanCard}
@@ -68,7 +81,7 @@ const KanbanCard: React.FC<IKanban> = (props) => {
               {props.create_date.slice(0, props.create_date.length - 3)}
             </span>
           </article>
-        </Tooltip>
+        </ButtonTooltip>
       </div>
     </ClickAwayListener>
   );
