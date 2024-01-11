@@ -1,9 +1,23 @@
 import React, { useContext, useState } from "react";
 import styles from "./Components.module.css";
-import { ClickAwayListener, Tooltip } from "@mui/material";
+import {
+  ClickAwayListener,
+  Tooltip,
+  TooltipProps,
+  styled,
+  tooltipClasses,
+} from "@mui/material";
 import Image from "next/image";
 import { IKanbanItemComponent } from "@/libs/interfaces";
 import { KanbanBoardContext } from "@/context/KanbanBoardContext";
+
+const ButtonTooltip = styled(({ className, ...props }: TooltipProps) => (
+  <Tooltip {...props} classes={{ popper: className }} arrow />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    padding: 0,
+  },
+}));
 
 const KanbanItemClickeable = (
   idItem: string,
@@ -90,7 +104,7 @@ const KanbanItem: React.FC<IKanbanItemComponent> = ({ item, idKanban }) => {
   return (
     <ClickAwayListener onClickAway={() => setTooltip(false)}>
       <div>
-        <Tooltip
+        <ButtonTooltip
           title={KanbanItemClickeable(item._id, item.status, idKanban)}
           PopperProps={{
             disablePortal: true,
@@ -99,12 +113,11 @@ const KanbanItem: React.FC<IKanbanItemComponent> = ({ item, idKanban }) => {
           disableFocusListener
           disableHoverListener
           disableTouchListener
-          arrow
         >
           <div onClick={() => setTooltip(true)} className={styles.KanbanItem}>
             <p>{item.data}</p>
           </div>
-        </Tooltip>
+        </ButtonTooltip>
       </div>
     </ClickAwayListener>
   );
