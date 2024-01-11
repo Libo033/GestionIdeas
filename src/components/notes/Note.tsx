@@ -11,12 +11,8 @@ const ToolTipNote = (expire: number) => {
   return (
     <div>
       {expire !== 0 ? (
-        <p>
-          {expire_date.slice(0, expire_date.indexOf(","))}
-        </p>
-      ) : (
-        ""
-      )}
+        <p>{expire_date.slice(0, expire_date.indexOf(","))}</p>
+      ) : undefined}
     </div>
   );
 };
