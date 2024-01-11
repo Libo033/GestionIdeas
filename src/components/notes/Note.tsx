@@ -10,9 +10,7 @@ const ToolTipNote = (expire: number) => {
 
   return (
     <div>
-      {expire !== 0 ? (
-        <p>{expire_date.slice(0, expire_date.indexOf(","))}</p>
-      ) : undefined}
+      <p>{expire_date.slice(0, expire_date.indexOf(","))}</p>
     </div>
   );
 };
@@ -39,12 +37,33 @@ const Note: React.FC<INote> = (props) => {
           </div>
         </Fade>
       </Modal>
-      <Tooltip
-        sx={{ padding: "10px" }}
-        title={ToolTipNote(props.expire_date)}
-        disableInteractive
-        arrow
-      >
+      {props.expire_date !== 0 ? (
+        <Tooltip
+          sx={{ padding: "10px" }}
+          title={ToolTipNote(props.expire_date)}
+          disableInteractive
+          arrow
+        >
+          <article onClick={() => setModal(true)} className={styles.Note}>
+            <div className={styles.Note_titleContainer}>
+              <p>{props.title}</p>
+            </div>
+            <div className={styles.Note_contentContainer}>
+              <p>
+                {props.content.length > 100
+                  ? props.content.slice(0, 100) + "..."
+                  : props.content}
+              </p>
+            </div>
+            <div className={styles.Note_createdAtContainer}>
+              <span className={styles.Note_createdAt}>
+                Creada el{" "}
+                {props.create_date.slice(0, props.create_date.length - 3)}
+              </span>
+            </div>
+          </article>
+        </Tooltip>
+      ) : (
         <article onClick={() => setModal(true)} className={styles.Note}>
           <div className={styles.Note_titleContainer}>
             <p>{props.title}</p>
@@ -63,7 +82,7 @@ const Note: React.FC<INote> = (props) => {
             </span>
           </div>
         </article>
-      </Tooltip>
+      )}
     </>
   );
 };
